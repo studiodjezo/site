@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 78.45 109.94">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #db3c27;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: url(#_30_10_ppp);
+      }
+    </style>
+    <pattern id="_30_10_ppp" data-name="30 % 10 ppp" x="0" y="0" width="19.32" height="19.32" patternTransform="translate(-3042.03 -1079.84)" patternUnits="userSpaceOnUse" viewBox="0 0 19.32 19.32">
+      <g>
+        <rect class="cls-2" width="19.32" height="19.32"/>
+        <path class="cls-1" d="M9.66,11.82c1.19,0,2.16-.97,2.16-2.16s-.97-2.16-2.16-2.16-2.16.97-2.16,2.16.97,2.16,2.16,2.16Z"/>
+      </g>
+    </pattern>
+  </defs>
+  <g id="Calque_1-2" data-name="Calque 1">
+    <rect class="cls-3" width="78.45" height="109.94"/>
+  </g>
+</svg>
