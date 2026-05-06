@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SD-2026-003 — Digital Activé — Studio Djezo</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+:root {
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-sans:    "Barlow", sans-serif;
+  --font-ui:      "Space Grotesk", sans-serif;
+  --border: 1px solid rgba(242,242,242,0.12);
+  --hover: rgba(242,242,242,0.04);
+  --bg-elev: rgba(242,242,242,0.03);
+  --text-dim: rgba(242,242,242,0.75);
+  --text-muted: rgba(242,242,242,0.38);
+  --ebon: #0B0B0B;
+  --chalk: #F2F2F2;
+  --vibrant: #FD3A20;
+  --mint: #21FC91;
+  --azure: #2179FC;
+  --dur-fast: 120ms;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--ebon); color: var(--chalk); font-family: var(--font-sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+::selection { background: var(--vibrant); color: var(--chalk); }
+
+.layout { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+
+.sidebar {
+  position: sticky; top: 0; height: 100vh;
+  border-right: var(--border); background: var(--ebon);
+  display: flex; flex-direction: column; overflow-y: auto; z-index: 100;
+}
+.sb-brand { padding: 28px 24px 20px; border-bottom: var(--border); }
+.sb-logo { height: 28px; width: auto; }
+.sb-tagline { font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 10px; }
+.sb-tagline .accent { color: var(--vibrant); }
+
+.sb-rapport-id { padding: 16px 24px; border-bottom: var(--border); background: rgba(253,58,32,0.04); }
+.sb-rapport-num { font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--vibrant); margin-bottom: 4px; }
+.sb-rapport-title { font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: -0.01em; text-transform: uppercase; color: var(--chalk); line-height: 1.1; }
+.sb-rapport-status {
+  display: flex; align-items: center; gap: 6px; margin-top: 8px;
+  font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--vibrant);
+}
+.sb-rapport-status::before {
+  content: ''; width: 5px; height: 5px; background: var(--vibrant);
+  border-radius: 50%; flex-shrink: 0; animation: pulse 2s ease-in-out infinite;
+}
+
+.sb-progress-bar-wrap { padding: 0 24px 16px; }
+.sb-progress-track { height: 2px; background: rgba(242,242,242,0.08); margin-top: 8px; }
+.sb-progress-fill { height: 100%; width: 75%; background: var(--vibrant); }
+.sb-progress-label { font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 6px; }
+
+.sb-nav-label { padding: 16px 24px 8px; font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+.sb-nav { display: flex; flex-direction: column; }
+.sb-nav a { display: flex; align-items: center; gap: 12px; padding: 11px 24px; font-family: var(--font-ui); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-decoration: none; color: var(--text-dim); border-left: 2px solid transparent; transition: color var(--dur-fast), border-color var(--dur-fast), background var(--dur-fast); }
+.sb-nav a:hover { color: var(--chalk); background: var(--hover); }
+.sb-nav a.active { color: var(--vibrant); border-left-color: var(--vibrant); background: rgba(253,58,32,0.06); }
+.sb-nav a .nav-num { font-family: var(--font-ui); font-size: 10px; color: var(--text-muted); min-width: 24px; }
+.sb-nav a.active .nav-num { color: var(--vibrant); opacity: 0.7; }
+
+.sb-back { margin-top: auto; padding: 20px 24px; border-top: var(--border); }
+.btn-back { display: flex; align-items: center; gap: 10px; font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color var(--dur-fast); }
+.btn-back:hover { color: var(--chalk); }
+.btn-back::before { content: '←'; font-size: 14px; color: var(--vibrant); }
+
+/* Rapport Header */
+.rapport-header { position: relative; border-bottom: var(--border); overflow: hidden; background: var(--ebon); }
+.rapport-header::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(242,242,242,0.05) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; z-index: 0; }
+.rh-scan-line { position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--vibrant), transparent); opacity: 0.55; animation: scanHeader 4s ease-in-out infinite; z-index: 2; }
+@keyframes scanHeader { 0% { top: 0; opacity: 0.7; } 100% { top: 100%; opacity: 0; } }
+
+.rh-topbar { position: relative; z-index: 3; display: flex; justify-content: space-between; align-items: center; padding: 16px 72px; border-bottom: var(--border); font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+.rh-classification { color: var(--vibrant); border: 1px solid rgba(253,58,32,0.4); padding: 3px 10px; font-size: 9px; letter-spacing: 0.2em; display: flex; align-items: center; gap: 6px; }
+.rh-classification::before { content: ''; width: 4px; height: 4px; background: var(--vibrant); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+
+.rh-body { position: relative; z-index: 3; padding: 56px 72px 48px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: end; }
+.rh-project-id { font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--vibrant); margin-bottom: 12px; }
+.rh-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(60px, 8vw, 110px); text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.88; color: var(--chalk); }
+.rh-title .accent { color: var(--vibrant); }
+
+.rh-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border: var(--border); background: rgba(242,242,242,0.08); min-width: 260px; }
+.rh-meta-item { padding: 14px 18px; background: var(--ebon); }
+.rh-meta-label { font-family: var(--font-ui); font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.rh-meta-value { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--chalk); letter-spacing: 0.02em; }
+.rh-meta-value.ok   { color: var(--mint); }
+.rh-meta-value.warn { color: var(--vibrant); }
+.rh-meta-value.wip  { color: var(--azure); }
+
+.rh-statusbar { position: relative; z-index: 3; display: flex; border-top: var(--border); }
+.rh-status-item { flex: 1; padding: 12px 24px; border-right: var(--border); display: flex; align-items: center; gap: 10px; font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.rh-status-item:last-child { border-right: 0; }
+.rh-status-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.rh-status-dot.ok   { background: var(--mint); }
+.rh-status-dot.warn { background: var(--vibrant); animation: pulse 2s ease-in-out infinite; }
+.rh-status-dot.off  { background: var(--text-muted); }
+
+/* Global progress bar in header */
+.rh-global-progress { position: relative; z-index: 3; padding: 16px 72px; border-top: var(--border); display: flex; align-items: center; gap: 20px; }
+.rh-gp-label { font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+.rh-gp-track { flex: 1; height: 2px; background: rgba(242,242,242,0.08); }
+.rh-gp-fill { height: 100%; width: 75%; background: var(--vibrant); transition: width 1s ease; }
+.rh-gp-pct { font-family: var(--font-ui); font-size: 11px; font-weight: 600; color: var(--vibrant); }
+
+/* Sections */
+.ri-section { padding: 80px 72px; border-bottom: var(--border); }
+.ri-section-head { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; }
+.ri-section-num { font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.14em; color: var(--vibrant); }
+.ri-section-rule { flex: 1; height: 1px; background: rgba(242,242,242,0.12); }
+.ri-section-kicker { font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
+
+/* Diagnostic */
+.diag-grid { display: grid; grid-template-columns: 1fr 1fr; border: var(--border); }
+.diag-col { padding: 40px 44px; }
+.diag-col:first-child { border-right: var(--border); }
+.diag-col-label { font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--vibrant); margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+.diag-col-label::before { content: ''; width: 20px; height: 1px; background: var(--vibrant); opacity: 0.4; }
+.diag-client-info { display: flex; flex-direction: column; gap: 24px; }
+.diag-info-key { font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; }
+.diag-info-val { font-family: var(--font-sans); font-size: 14px; line-height: 1.6; color: var(--text-dim); }
+.diag-info-val strong { color: var(--chalk); font-weight: 600; }
+.panne-list { display: flex; flex-direction: column; }
+.panne-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: var(--border); }
+.panne-item:last-child { border-bottom: 0; }
+.panne-indicator { width: 24px; height: 24px; border: 1px solid var(--vibrant); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-family: var(--font-ui); font-size: 11px; line-height: 1; }
+.panne-indicator.fixed  { border-color: var(--mint);    background: rgba(33,252,145,0.07);  color: var(--mint); }
+.panne-indicator.active { border-color: var(--vibrant); background: rgba(253,58,32,0.07);   color: var(--vibrant); animation: pulse 2s ease-in-out infinite; }
+.panne-title { font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.03em; color: var(--chalk); margin-bottom: 3px; }
+.panne-desc { font-family: var(--font-sans); font-size: 12px; line-height: 1.55; color: var(--text-muted); }
+
+/* Protocole */
+.protocole-steps { display: flex; flex-direction: column; position: relative; }
+.protocole-steps::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 1px; background: rgba(242,242,242,0.07); }
+.protocole-step { display: grid; grid-template-columns: 40px 1fr auto; gap: 28px; padding: 28px 0; border-bottom: var(--border); position: relative; align-items: start; }
+.protocole-step:last-child { border-bottom: 0; }
+.ps-indicator { width: 40px; height: 40px; border: 1px solid rgba(242,242,242,0.12); background: var(--ebon); display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-size: 11px; font-weight: 600; color: var(--text-muted); position: relative; z-index: 1; flex-shrink: 0; }
+.ps-indicator.done    { border-color: var(--mint);    color: var(--mint);    background: rgba(33,252,145,0.06); }
+.ps-indicator.actif   { border-color: var(--vibrant); color: var(--vibrant); background: rgba(253,58,32,0.06); }
+.ps-indicator.pending { opacity: 0.35; }
+
+.ps-step-label { font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.ps-title { font-family: var(--font-display); font-weight: 700; font-size: 22px; text-transform: uppercase; letter-spacing: -0.01em; color: var(--chalk); margin-bottom: 8px; line-height: 1; }
+.ps-title.pending { color: var(--text-muted); }
+.ps-desc { font-family: var(--font-sans); font-size: 13px; line-height: 1.65; color: var(--text-dim); max-width: 520px; }
+.ps-desc.pending { color: var(--text-muted); }
+.ps-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.ps-tag { font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); border: var(--border); padding: 3px 8px; }
+
+.ps-badge { font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; margin-top: 10px; }
+.ps-badge.done    { color: var(--mint);    border: 1px solid rgba(33,252,145,0.3); }
+.ps-badge.actif   { color: var(--vibrant); border: 1px solid rgba(253,58,32,0.3); }
+.ps-badge.pending { color: var(--text-muted); border: var(--border); opacity: 0.5; }
+.ps-badge::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+.ps-badge.actif::before { animation: pulse 2s ease-in-out infinite; }
+
+/* Résultat */
+.resultat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.rf-wide { grid-column: 1 / -1; aspect-ratio: 16/7; }
+.resultat-frame { position: relative; aspect-ratio: 4/3; border: var(--border); background: var(--bg-elev); overflow: hidden; }
+.resultat-frame.wip { border-color: rgba(253,58,32,0.2); }
+.resultat-frame::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(242,242,242,0.04) 1px, transparent 1px); background-size: 20px 20px; }
+.rf-stripes { position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(242,242,242,0.01) 20px, rgba(242,242,242,0.01) 21px); }
+.rf-cross { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; opacity: 0.14; }
+.rf-cross::before, .rf-cross::after { content: ''; position: absolute; background: var(--vibrant); }
+.rf-cross::before { width: 1px; height: 100%; left: 50%; transform: translateX(-50%); }
+.rf-cross::after { height: 1px; width: 100%; top: 50%; transform: translateY(-50%); }
+.rf-bracket { position: absolute; width: 16px; height: 16px; pointer-events: none; z-index: 2; }
+.rf-bracket.tl { top: 10px; left: 10px; border-top: 1px solid var(--vibrant); border-left: 1px solid var(--vibrant); }
+.rf-bracket.tr { top: 10px; right: 10px; border-top: 1px solid var(--vibrant); border-right: 1px solid var(--vibrant); }
+.rf-bracket.bl { bottom: 10px; left: 10px; border-bottom: 1px solid var(--vibrant); border-left: 1px solid var(--vibrant); }
+.rf-bracket.br { bottom: 10px; right: 10px; border-bottom: 1px solid var(--vibrant); border-right: 1px solid var(--vibrant); }
+.rf-anno { position: absolute; top: 12px; right: 14px; font-family: var(--font-ui); font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vibrant); z-index: 3; }
+.rf-label { position: absolute; bottom: 12px; left: 14px; font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); z-index: 3; }
+.rf-wip-badge { position: absolute; top: 12px; left: 14px; font-family: var(--font-ui); font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--vibrant); border: 1px solid rgba(253,58,32,0.35); padding: 2px 7px; z-index: 3; display: flex; align-items: center; gap: 5px; }
+.rf-wip-badge::before { content: ''; width: 4px; height: 4px; background: var(--vibrant); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+.rf-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; text-align: center; }
+.rf-center-sub { font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+.rf-center-title { font-family: var(--font-display); font-weight: 700; font-size: 28px; text-transform: uppercase; letter-spacing: -0.01em; color: rgba(242,242,242,0.1); line-height: 1; }
+
+/* Footer */
+.report-footer { padding: 48px 72px; display: flex; align-items: center; justify-content: space-between; gap: 32px; border-top: var(--border); }
+.rf-sig-label { font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+.rf-sig-name { font-family: var(--font-display); font-weight: 700; font-size: 28px; text-transform: uppercase; letter-spacing: -0.01em; color: var(--chalk); line-height: 1; }
+.rf-sig-name .o { color: var(--vibrant); }
+.rf-sig-meta { font-family: var(--font-ui); font-size: 10px; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 6px; }
+.btn-primary { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--chalk); background: var(--vibrant); text-decoration: none; padding: 14px 28px; transition: background var(--dur-fast), color var(--dur-fast); }
+.btn-primary:hover { background: var(--chalk); color: var(--ebon); }
+
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+@media (max-width: 1100px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .diag-grid { grid-template-columns: 1fr; }
+  .diag-col:first-child { border-right: 0; border-bottom: var(--border); }
+  .resultat-grid { grid-template-columns: 1fr; }
+  .rf-wide { aspect-ratio: 4/3; }
+  .rh-body { grid-template-columns: 1fr; padding: 40px 32px; }
+  .rh-topbar, .rh-statusbar, .rh-global-progress { padding-left: 32px; padding-right: 32px; }
+  .ri-section { padding: 60px 32px; }
+  .report-footer { flex-direction: column; align-items: flex-start; padding: 40px 32px; }
+  .protocole-step { grid-template-columns: 40px 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-brand">
+      <img class="sb-logo" src="../assets/v2/sd-logo-h-main-chalk.svg" alt="Studio Djezo">
+      <div class="sb-tagline">Rapport d'intervention · <span class="accent">Confidentiel</span></div>
+    </div>
+
+    <div class="sb-rapport-id">
+      <div class="sb-rapport-num">SD-2026-003</div>
+      <div class="sb-rapport-title">Digital<br>Activé.</div>
+      <div class="sb-rapport-status">En cours · 75%</div>
+    </div>
+
+    <div class="sb-progress-bar-wrap">
+      <div class="sb-progress-track">
+        <div class="sb-progress-fill"></div>
+      </div>
+      <div class="sb-progress-label">
+        <span>Avancement</span>
+        <span>75%</span>
+      </div>
+    </div>
+
+    <div class="sb-nav-label">Sections du rapport</div>
+    <nav class="sb-nav" id="sbnav">
+      <a href="#diagnostic" class="active"><span class="nav-num">01/</span>Diagnostic</a>
+      <a href="#protocole"><span class="nav-num">02/</span>Protocole</a>
+      <a href="#resultat"><span class="nav-num">03/</span>Rétablissement</a>
+    </nav>
+
+    <div class="sb-back">
+      <a href="../index.html" class="btn-back">Retour à la base</a>
+    </div>
+
+    <div style="padding:16px 24px 20px;border-top:var(--border)">
+      <a href="../legal.html" style="font-family:var(--font-ui);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 120ms" onmouseover="this.style.color='var(--vibrant)'" onmouseout="this.style.color='var(--text-muted)'">[Mentions légales]</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- RAPPORT HEADER -->
+    <div class="rapport-header">
+      <div class="rh-scan-line"></div>
+
+      <div class="rh-topbar">
+        <span>Studio Djezo · Rapport Technique</span>
+        <span class="rh-classification">Confidentiel</span>
+        <span>Mai 2026 — v2.0</span>
+      </div>
+
+      <div class="rh-body">
+        <div>
+          <div class="rh-project-id">SD-2026-003 / Intervention digital &amp; UI</div>
+          <div class="rh-title">Digital<br><span class="accent">Activé.</span></div>
+        </div>
+        <div class="rh-meta-grid">
+          <div class="rh-meta-item"><div class="rh-meta-label">Référence</div><div class="rh-meta-value">SD-2026-003</div></div>
+          <div class="rh-meta-item"><div class="rh-meta-label">Statut</div><div class="rh-meta-value warn">En cours</div></div>
+          <div class="rh-meta-item"><div class="rh-meta-label">Expert assigné</div><div class="rh-meta-value">Studio Djezo</div></div>
+          <div class="rh-meta-item"><div class="rh-meta-label">Urgence</div><div class="rh-meta-value warn">Haute</div></div>
+          <div class="rh-meta-item"><div class="rh-meta-label">Horodatage</div><div class="rh-meta-value">2026-04-28</div></div>
+          <div class="rh-meta-item"><div class="rh-meta-label">Avancement</div><div class="rh-meta-value warn">75%</div></div>
+        </div>
+      </div>
+
+      <div class="rh-statusbar">
+        <div class="rh-status-item"><div class="rh-status-dot ok"></div>UI Design · Validé</div>
+        <div class="rh-status-item"><div class="rh-status-dot warn"></div>Social Media · En cours</div>
+        <div class="rh-status-item"><div class="rh-status-dot warn"></div>Motion · En cours</div>
+        <div class="rh-status-item"><div class="rh-status-dot off"></div>Déploiement · En attente</div>
+      </div>
+
+      <div class="rh-global-progress">
+        <span class="rh-gp-label">Progression globale</span>
+        <div class="rh-gp-track"><div class="rh-gp-fill"></div></div>
+        <span class="rh-gp-pct">75%</span>
+      </div>
+    </div>
+
+    <!-- 01 DIAGNOSTIC -->
+    <section class="ri-section" id="diagnostic">
+      <div class="ri-section-head">
+        <span class="ri-section-num">01 /</span>
+        <span class="ri-section-rule"></span>
+        <span class="ri-section-kicker">Diagnostic — La Panne</span>
+      </div>
+
+      <div class="diag-grid">
+        <div class="diag-col">
+          <div class="diag-col-label">Situation initiale</div>
+          <div class="diag-client-info">
+            <div>
+              <div class="diag-info-key">Secteur d'activité</div>
+              <div class="diag-info-val">Prestataire de services · B2B/B2C PACA</div>
+            </div>
+            <div>
+              <div class="diag-info-key">Problème détecté</div>
+              <div class="diag-info-val"><strong>Présence digitale inexistante.</strong> Site obsolète datant de 2018, non responsive, réseaux sociaux sans ligne directrice, aucune cohérence de ton ni de visuel.</div>
+            </div>
+            <div>
+              <div class="diag-info-key">Impact constaté</div>
+              <div class="diag-info-val">Perte de leads entrants. Crédibilité numérique nulle face aux concurrents. Absence totale dans les résultats de recherche locaux.</div>
+            </div>
+            <div>
+              <div class="diag-info-key">Délai d'intervention</div>
+              <div class="diag-info-val">8 semaines · Activation digitale complète</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="diag-col">
+          <div class="diag-col-label">Pannes identifiées</div>
+          <div class="panne-list">
+            <div class="panne-item">
+              <div class="panne-indicator fixed">✓</div>
+              <div>
+                <div class="panne-title">Site non responsive</div>
+                <div class="panne-desc">Site 2018 non adapté mobile, chargement > 8s, score Lighthouse 22/100.</div>
+              </div>
+            </div>
+            <div class="panne-item">
+              <div class="panne-indicator fixed">✓</div>
+              <div>
+                <div class="panne-title">Réseaux sans stratégie</div>
+                <div class="panne-desc">Publications irrégulières, sans charte visuelle ni calendrier éditorial défini.</div>
+              </div>
+            </div>
+            <div class="panne-item">
+              <div class="panne-indicator fixed">✓</div>
+              <div>
+                <div class="panne-title">Aucun motion design</div>
+                <div class="panne-desc">Contenu 100% statique. Engagement Instagram sous les 0,5% de portée.</div>
+              </div>
+            </div>
+            <div class="panne-item">
+              <div class="panne-indicator active">→</div>
+              <div>
+                <div class="panne-title">Déploiement en cours</div>
+                <div class="panne-desc">Mise en ligne du nouveau site et activation des templates social media.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 PROTOCOLE -->
+    <section class="ri-section" id="protocole">
+      <div class="ri-section-head">
+        <span class="ri-section-num">02 /</span>
+        <span class="ri-section-rule"></span>
+        <span class="ri-section-kicker">Protocole d'Intervention — Work in Progress</span>
+      </div>
+
+      <div class="protocole-steps">
+
+        <div class="protocole-step">
+          <div class="ps-indicator done">01</div>
+          <div>
+            <div class="ps-step-label">Étape 01 · Complète</div>
+            <div class="ps-title">Audit digital</div>
+            <div class="ps-desc">Analyse complète de l'existant — site, réseaux, SEO local, benchmark concurrentiel. Définition de la stratégie digitale et du calendrier d'activation.</div>
+            <div class="ps-tags"><span class="ps-tag">SEO</span><span class="ps-tag">Benchmark</span><span class="ps-tag">Stratégie</span></div>
+          </div>
+          <div><div class="ps-badge done">Validé</div></div>
+        </div>
+
+        <div class="protocole-step">
+          <div class="ps-indicator done">02</div>
+          <div>
+            <div class="ps-step-label">Étape 02 · Complète</div>
+            <div class="ps-title">UI Design</div>
+            <div class="ps-desc">Conception des maquettes Figma — wireframes basse fidélité, puis prototype haute fidélité. Système de composants responsive, charte UI alignée sur le branding existant.</div>
+            <div class="ps-tags"><span class="ps-tag">Figma</span><span class="ps-tag">Composants</span><span class="ps-tag">Responsive</span></div>
+          </div>
+          <div><div class="ps-badge done">Validé</div></div>
+        </div>
+
+        <div class="protocole-step">
+          <div class="ps-indicator done">03</div>
+          <div>
+            <div class="ps-step-label">Étape 03 · Complète</div>
+            <div class="ps-title">Templates social media</div>
+            <div class="ps-desc">Création d'un système de templates Canva/After Effects : Story, Feed carré, Reel cover. Déclinaisons par catégorie de contenu. Charte éditoriale et guide de ton.</div>
+            <div class="ps-tags"><span class="ps-tag">Instagram</span><span class="ps-tag">Templates</span><span class="ps-tag">Motion</span></div>
+          </div>
+          <div><div class="ps-badge done">Validé</div></div>
+        </div>
+
+        <div class="protocole-step">
+          <div class="ps-indicator actif">04</div>
+          <div>
+            <div class="ps-step-label">Étape 04 · En cours</div>
+            <div class="ps-title">Motion graphique</div>
+            <div class="ps-desc">Production des animations d'introduction, transitions de slides et boucles visuelles pour les Reels. Intégration motion sur le site (CSS animations + micro-interactions).</div>
+            <div class="ps-tags"><span class="ps-tag">After Effects</span><span class="ps-tag">CSS</span><span class="ps-tag">Micro-UI</span></div>
+          </div>
+          <div><div class="ps-badge actif">En cours</div></div>
+        </div>
+
+        <div class="protocole-step">
+          <div class="ps-indicator pending">05</div>
+          <div>
+            <div class="ps-step-label">Étape 05 · En attente</div>
+            <div class="ps-title ps-title-pending" style="color:var(--text-muted)">Déploiement & activation</div>
+            <div class="ps-desc ps-desc-pending" style="color:var(--text-muted)">Mise en ligne du site, formation du client à l'utilisation des templates. Lancement des premiers posts planifiés. Activation digitale complète.</div>
+            <div class="ps-tags"><span class="ps-tag" style="opacity:0.4">Déploiement</span><span class="ps-tag" style="opacity:0.4">Formation</span><span class="ps-tag" style="opacity:0.4">Launch</span></div>
+          </div>
+          <div><div class="ps-badge pending">En attente</div></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 03 RÉSULTAT -->
+    <section class="ri-section" id="resultat" style="border-bottom:0">
+      <div class="ri-section-head">
+        <span class="ri-section-num">03 /</span>
+        <span class="ri-section-rule"></span>
+        <span class="ri-section-kicker">Rétablissement — En cours</span>
+      </div>
+
+      <div class="resultat-grid">
+        <div class="resultat-frame rf-wide">
+          <div class="rf-bracket tl"></div><div class="rf-bracket tr"></div>
+          <div class="rf-bracket bl"></div><div class="rf-bracket br"></div>
+          <div class="rf-stripes"></div><div class="rf-cross"></div>
+          <div class="rf-wip-badge">En cours</div>
+          <div class="rf-anno">UI Site · Maquette validée</div>
+          <div class="rf-label">Intégration en cours</div>
+          <div class="rf-center">
+            <div class="rf-center-sub">Vue principale</div>
+            <div class="rf-center-title">Digital<br>Activé.</div>
+          </div>
+        </div>
+
+        <div class="resultat-frame">
+          <div class="rf-bracket tl"></div><div class="rf-bracket tr"></div>
+          <div class="rf-bracket bl"></div><div class="rf-bracket br"></div>
+          <div class="rf-stripes"></div><div class="rf-cross"></div>
+          <div class="rf-wip-badge">En cours</div>
+          <div class="rf-anno">Templates Instagram</div>
+          <div class="rf-label">Story / Feed / Reel</div>
+          <div class="rf-center">
+            <div class="rf-center-sub">Social media</div>
+            <div class="rf-center-title">Feed<br>Unifié.</div>
+          </div>
+        </div>
+
+        <div class="resultat-frame" style="opacity:0.45">
+          <div class="rf-bracket tl"></div><div class="rf-bracket tr"></div>
+          <div class="rf-bracket bl"></div><div class="rf-bracket br"></div>
+          <div class="rf-stripes"></div><div class="rf-cross"></div>
+          <div class="rf-anno">Déploiement · En attente</div>
+          <div class="rf-label">Phase 05 non démarrée</div>
+          <div class="rf-center">
+            <div class="rf-center-sub">Prochaine étape</div>
+            <div class="rf-center-title">Launch<br>Prévu.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="report-footer">
+      <div>
+        <div class="rf-sig-label">Rapport signé par</div>
+        <div class="rf-sig-name">Studio <span class="o">Djezo</span><span style="color:var(--chalk)">.</span></div>
+        <div class="rf-sig-meta">SD-2026-003 · Expert en communication visuelle · Toulon, PACA</div>
+      </div>
+      <a href="../index.html" class="btn-primary">← Retour à la base</a>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+const navLinks = document.querySelectorAll('.sb-nav a');
+navLinks.forEach(a => a.addEventListener('click', () => {
+  navLinks.forEach(l => l.classList.remove('active'));
+  a.classList.add('active');
+}));
+const sections = ['diagnostic','protocole','resultat'];
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-10% 0px -60% 0px' });
+sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+</script>
+</body>
+</html>

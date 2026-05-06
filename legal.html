@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentions Légales — Studio Djezo</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzBiMGIwYn1AbWVkaWEgKHByZWZlcnMtY29sb3Itc2NoZW1lOmRhcmspey5jbHMtMXtmaWxsOiNmMmYyZjJ9fTwvc3R5bGU+PC9kZWZzPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzLjM4NSAyMS41MikiPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTkyLjk5IDUxLjcxSDI1Ljk4YzE1LjktMTAuMSAzNi41Ni0xNC43OCA2MC4xOS0xMy41N2w2LjY1LjM0LTEuMjMtNi41NEM4Ny45MSAxMi40OCA3Mi41NiAxLjczIDQ1Ljk1LjAxSDBzMCA2MC41OCAwIDYwLjU4aDczLjdjLTEyLjc1IDEwLjUyLTQxLjI0IDE5LjEzLTY4LjA5IDE4LjUyTDAgNzkuMDR2MzcuOTJoNDUuOTFjMTcuMDEgMCAyOS42My00LjcgMzcuNTEtMTMuOTcgNS40Ni02LjQzIDguNDQtMTUgOS4zMS0yMy4zMi45Ni05LjIyLjI2LTE4LjY5LjI2LTI3Ljk1Wk0xMC40NyAxMC40N2gzNC45N2MxOC4wNiAxLjIgMjkuMTggNi43NyAzMy44NiAxNy4wMWgtLjQzYy0yNy42OCAwLTUxLjE3IDcuODItNjguMzkgMjIuNzZWMTIuNDdaTTc1LjQ0IDk2LjJjLTUuOCA2LjgyLTE1LjczIDEwLjI4LTI5LjUzIDEwLjI4SDEwLjc3di0xNi45YzEzLjYtLjIgMjYuMTktMS45NCAzNy40NS01LjE5IDEyLjc4LTMuNjkgMjQuMjMtOS40MSAzNC4wMy0xNy4wMS44NSAxMi44Mi0xLjQzIDIyLjUwLTYuOCAyOC44M1oiLz48L2c+PC9zdmc+">
+  <link rel="stylesheet" href="colors_and_type.css">
+  <style>
+    :root {
+      --font-display: "Barlow Condensed", sans-serif;
+      --font-sans: "Barlow", sans-serif;
+      --font-ui: "Space Grotesk", sans-serif;
+      --border: 1px solid rgba(242, 242, 242, 0.12);
+      --border-strong: 1px solid rgba(242, 242, 242, 0.35);
+      --hover: rgba(242, 242, 242, 0.04);
+      --bg-elev: rgba(242, 242, 242, 0.03);
+      --text-dim: rgba(242, 242, 242, 0.75);
+      --text-muted: rgba(242, 242, 242, 0.38);
+      --ebon: #0B0B0B;
+      --chalk: #F2F2F2;
+      --vibrant: #FD3A20;
+      --mint: #21FC91;
+      --dur-fast: 120ms;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--ebon);
+      color: var(--chalk);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--vibrant);
+      color: var(--chalk);
+    }
+
+    /* ---- Layout ---- */
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    /* ---- Sidebar ---- */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      border-right: var(--border);
+      background: var(--ebon);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .sb-brand {
+      padding: 28px 24px 20px;
+      border-bottom: var(--border);
+    }
+
+    .sb-logo {
+      height: 28px;
+      width: auto;
+    }
+
+    .sb-tagline {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .sb-tagline .accent {
+      color: var(--vibrant);
+    }
+
+    .sb-doc-id {
+      padding: 16px 24px;
+      border-bottom: var(--border);
+      background: rgba(242, 242, 242, 0.02);
+    }
+
+    .sb-doc-ref {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .sb-doc-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--chalk);
+      line-height: 1.15;
+    }
+
+    .sb-doc-date {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .sb-nav-label {
+      padding: 16px 24px 8px;
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .sb-nav {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sb-nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 24px;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: var(--text-dim);
+      border-left: 2px solid transparent;
+      transition: color var(--dur-fast), border-color var(--dur-fast), background var(--dur-fast);
+    }
+
+    .sb-nav a:hover {
+      color: var(--chalk);
+      background: var(--hover);
+    }
+
+    .sb-nav a.active {
+      color: var(--vibrant);
+      border-left-color: var(--vibrant);
+      background: rgba(253, 58, 32, 0.06);
+    }
+
+    .sb-nav a .nav-num {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      color: var(--text-muted);
+      min-width: 24px;
+    }
+
+    .sb-nav a.active .nav-num {
+      color: var(--vibrant);
+      opacity: 0.7;
+    }
+
+    .sb-foot {
+      margin-top: auto;
+      padding: 20px 24px;
+      border-top: var(--border);
+    }
+
+    .sb-foot-tagline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--text-dim);
+    }
+
+    .sb-foot-tagline .o {
+      color: var(--vibrant);
+    }
+
+    .sb-foot-meta {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      letter-spacing: 0.06em;
+    }
+
+    .sb-foot-legal {
+      display: block;
+      margin-top: 10px;
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--dur-fast);
+    }
+
+    .sb-foot-legal:hover {
+      color: var(--vibrant);
+    }
+
+    .sb-back {
+      padding: 16px 24px;
+      border-top: var(--border);
+    }
+
+    .btn-back {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--dur-fast);
+    }
+
+    .btn-back:hover {
+      color: var(--chalk);
+    }
+
+    .btn-back::before {
+      content: '←';
+      font-size: 14px;
+      color: var(--vibrant);
+    }
+
+    /* ---- Document header ---- */
+    .doc-header {
+      padding: 0;
+      border-bottom: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doc-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(242, 242, 242, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+
+    .doc-header-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 72px;
+      border-bottom: var(--border);
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    .doc-header-topbar .doc-ref {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      border: var(--border);
+      padding: 3px 10px;
+    }
+
+    .doc-header-body {
+      padding: 56px 72px 48px;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: end;
+    }
+
+    .doc-kicker {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .doc-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(52px, 7vw, 96px);
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      line-height: 0.9;
+      color: var(--chalk);
+    }
+
+    .doc-meta-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: var(--border);
+      background: rgba(242, 242, 242, 0.08);
+      min-width: 230px;
+    }
+
+    .doc-meta-item {
+      padding: 12px 18px;
+      background: var(--ebon);
+    }
+
+    .doc-meta-label {
+      font-family: var(--font-ui);
+      font-size: 8px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .doc-meta-value {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--chalk);
+      letter-spacing: 0.02em;
+    }
+
+    .doc-statusbar {
+      display: flex;
+      border-top: var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .doc-status-item {
+      flex: 1;
+      padding: 11px 24px;
+      border-right: var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .doc-status-item:last-child {
+      border-right: 0;
+    }
+
+    .doc-status-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--mint);
+      flex-shrink: 0;
+    }
+
+    /* ---- Article section ---- */
+    .legal-section {
+      padding: 72px 72px 64px;
+      border-bottom: var(--border);
+      position: relative;
+    }
+
+    /* Section heading bar */
+    .legal-section-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .legal-section-num {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--vibrant);
+    }
+
+    .legal-section-rule {
+      flex: 1;
+      height: 1px;
+      background: rgba(242, 242, 242, 0.12);
+    }
+
+    .legal-section-title {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Article content */
+    .legal-article {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      border: var(--border);
+    }
+
+    .legal-row {
+      display: contents;
+    }
+
+    .legal-row-label {
+      padding: 20px 24px;
+      border-right: var(--border);
+      border-bottom: var(--border);
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      line-height: 1.55;
+    }
+
+    .legal-row-value {
+      padding: 20px 28px;
+      border-bottom: var(--border);
+      font-family: var(--font-ui);
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-dim);
+    }
+
+    .legal-row:last-child .legal-row-label,
+    .legal-row:last-child .legal-row-value {
+      border-bottom: 0;
+    }
+
+    .legal-row-value strong {
+      color: var(--chalk);
+      font-weight: 600;
+    }
+
+    .legal-row-value a {
+      color: var(--vibrant);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(253, 58, 32, 0.3);
+      transition: border-color var(--dur-fast);
+    }
+
+    .legal-row-value a:hover {
+      border-color: var(--vibrant);
+    }
+
+    /* Full-width notice block */
+    .legal-notice {
+      margin-top: 28px;
+      padding: 20px 24px;
+      border: var(--border);
+      background: var(--bg-elev);
+      position: relative;
+    }
+
+    .legal-notice::before {
+      content: 'NOTE';
+      position: absolute;
+      top: -1px;
+      left: 20px;
+      font-family: var(--font-ui);
+      font-size: 8px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      background: var(--ebon);
+      color: var(--text-muted);
+      padding: 0 6px;
+      transform: translateY(-50%);
+    }
+
+    .legal-notice p {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* RGPD specifics */
+    .rgpd-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      border: var(--border);
+      background: rgba(242, 242, 242, 0.08);
+    }
+
+    .rgpd-item {
+      padding: 20px 24px;
+      background: var(--ebon);
+    }
+
+    .rgpd-item-label {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--vibrant);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .rgpd-item-label::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--vibrant);
+      border-radius: 50%;
+    }
+
+    .rgpd-item-val {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-dim);
+    }
+
+    /* Contact block */
+    .legal-contact-block {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 24px 28px;
+      border: 1px solid rgba(253, 58, 32, 0.2);
+      background: rgba(253, 58, 32, 0.03);
+    }
+
+    .lcb-icon {
+      font-family: var(--font-ui);
+      font-size: 22px;
+      color: var(--vibrant);
+      flex-shrink: 0;
+    }
+
+    .lcb-label {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .lcb-value {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--chalk);
+    }
+
+    .lcb-value a {
+      color: var(--vibrant);
+      text-decoration: none;
+    }
+
+    .lcb-value a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer doc */
+    .doc-footer {
+      padding: 48px 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .doc-footer-sig-label {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .doc-footer-sig-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 26px;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--chalk);
+      line-height: 1;
+    }
+
+    .doc-footer-sig-name .o {
+      color: var(--vibrant);
+    }
+
+    .doc-footer-meta {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-top: 6px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--chalk);
+      background: var(--vibrant);
+      text-decoration: none;
+      padding: 14px 28px;
+      transition: background var(--dur-fast), color var(--dur-fast);
+    }
+
+    .btn-primary:hover {
+      background: var(--chalk);
+      color: var(--ebon);
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .doc-header-body {
+        grid-template-columns: 1fr;
+        padding: 40px 32px;
+      }
+
+      .doc-header-topbar,
+      .doc-statusbar {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .legal-section {
+        padding: 56px 32px 48px;
+      }
+
+      .legal-article {
+        grid-template-columns: 1fr;
+      }
+
+      .legal-row-label {
+        border-right: 0;
+        border-bottom: var(--border);
+        padding: 14px 20px;
+      }
+
+      .legal-row-value {
+        padding: 14px 20px;
+      }
+
+      .rgpd-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .doc-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 32px;
+      }
+
+      .legal-contact-block {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sb-brand">
+        <img class="sb-logo" src="assets/v2/sd-logo-h-main-chalk.svg" alt="Studio Djezo">
+        <div class="sb-tagline">Document officiel · <span class="accent">Conformité légale</span></div>
+      </div>
+
+      <div class="sb-doc-id">
+        <div class="sb-doc-ref">DOC-LEGAL-2026</div>
+        <div class="sb-doc-title">Mentions<br>Légales</div>
+        <div class="sb-doc-date">Version 2.0 · Mai 2026</div>
+      </div>
+
+      <div class="sb-nav-label">Sommaire</div>
+      <nav class="sb-nav" id="sbnav">
+        <a href="#edition" class="active"><span class="nav-num">01/</span>Édition</a>
+        <a href="#hebergement"><span class="nav-num">02/</span>Hébergement</a>
+        <a href="#pi"><span class="nav-num">03/</span>Propriété intellectuelle</a>
+        <a href="#rgpd"><span class="nav-num">04/</span>Données personnelles</a>
+        <a href="#cookies"><span class="nav-num">05/</span>Cookies</a>
+        <a href="#credits"><span class="nav-num">06/</span>Crédits</a>
+      </nav>
+
+      <div class="sb-back">
+        <a href="index.html" class="btn-back">Retour à la base</a>
+      </div>
+
+      <div class="sb-foot">
+        <div class="sb-foot-tagline">Communication <span class="o">rétablie</span>.</div>
+        <div class="sb-foot-meta">v2.0 · Mai 2026<br>Toulon, PACA</div>
+        <a href="legal.html" class="sb-foot-legal">[Mentions légales]</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+
+      <!-- DOCUMENT HEADER -->
+      <div class="doc-header">
+        <div class="doc-header-topbar">
+          <span>Studio Djezo · Document de conformité</span>
+          <span class="doc-ref">DOC-LEGAL-2026-V2.0</span>
+          <span>Mise à jour : Mai 2026</span>
+        </div>
+
+        <div class="doc-header-body">
+          <div>
+            <div class="doc-kicker">Document légal · Conformité LCEN &amp; RGPD</div>
+            <div class="doc-title">Mentions<br>Légales.</div>
+          </div>
+          <div class="doc-meta-block">
+            <div class="doc-meta-item">
+              <div class="doc-meta-label">Entité</div>
+              <div class="doc-meta-value">Studio Djezo</div>
+            </div>
+            <div class="doc-meta-item">
+              <div class="doc-meta-label">Statut</div>
+              <div class="doc-meta-value">En vigueur</div>
+            </div>
+            <div class="doc-meta-item">
+              <div class="doc-meta-label">Version</div>
+              <div class="doc-meta-value">2.0 · 2026</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-statusbar">
+          <div class="doc-status-item">
+            <div class="doc-status-dot"></div>LCEN · Conforme
+          </div>
+          <div class="doc-status-item">
+            <div class="doc-status-dot"></div>RGPD · Conforme
+          </div>
+          <div class="doc-status-item">
+            <div class="doc-status-dot"></div>Cookies · Déclaré
+          </div>
+          <div class="doc-status-item">
+            <div class="doc-status-dot"></div>PI · Protégée
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+         01 — ÉDITION
+         ============================================================ -->
+      <section class="legal-section" id="edition">
+        <div class="legal-section-head">
+          <span class="legal-section-num">01 /</span>
+          <span class="legal-section-rule"></span>
+          <span class="legal-section-title">Édition du site</span>
+        </div>
+
+        <div class="legal-article">
+          <div class="legal-row">
+            <div class="legal-row-label">Raison sociale</div>
+            <div class="legal-row-value"><strong>Studio Djezo</strong><br>Studio graphique indépendant</div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Statut juridique</div>
+            <div class="legal-row-value">
+              <strong>STATUT ARTISTE AUTEUR - Diplômé Bachelor Niv. 6 RNCP Designer graphique</strong><br>
+              SIRET : <strong>98898987700010</strong>
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Adresse</div>
+            <div class="legal-row-value">
+              32 les mas de la solitude<br>
+              83220 Le Pradet<br>
+              France
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Contact</div>
+            <div class="legal-row-value">
+              Email : <a href="mailto:contact@studiodjezo.com">contact@studiodjezo.com</a><br>
+              Site : <strong>studiodjezo.com</strong>
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Directeur de la publication</div>
+            <div class="legal-row-value">
+              <strong>Jeremy Girard pour Studio Djezo</strong>
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">TVA intracommunautaire</div>
+            <div class="legal-row-value">
+              <strong>Non assujetti à TVA selon article 293 B du CGI</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         02 — HÉBERGEMENT
+         ============================================================ -->
+      <section class="legal-section" id="hebergement">
+        <div class="legal-section-head">
+          <span class="legal-section-num">02 /</span>
+          <span class="legal-section-rule"></span>
+          <span class="legal-section-title">Hébergement</span>
+        </div>
+
+        <div class="legal-article">
+          <div class="legal-row">
+            <div class="legal-row-label">Hébergeur</div>
+            <div class="legal-row-value"><strong>OVH SAS</strong></div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Adresse</div>
+            <div class="legal-row-value">
+              2 rue Kellermann<br>
+              59100 Roubaix<br>
+              France
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Forme juridique</div>
+            <div class="legal-row-value">Société par actions simplifiée (SAS)<br>Capital social : 10 174 560 €<br>RCS
+              Lille Métropole · 424 761 419</div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Contact hébergeur</div>
+            <div class="legal-row-value">
+              <a href="https://www.ovhcloud.com" target="_blank" rel="noopener noreferrer">www.ovhcloud.com</a><br>
+              Tél. : +33 9 72 10 10 07
+            </div>
+          </div>
+        </div>
+
+        <div class="legal-notice">
+          <p>Les données sont hébergées en France conformément à la réglementation européenne en vigueur sur la
+            protection des données personnelles (RGPD — Règlement UE 2016/679).</p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         03 — PROPRIÉTÉ INTELLECTUELLE
+         ============================================================ -->
+      <section class="legal-section" id="pi">
+        <div class="legal-section-head">
+          <span class="legal-section-num">03 /</span>
+          <span class="legal-section-rule"></span>
+          <span class="legal-section-title">Propriété intellectuelle</span>
+        </div>
+
+        <div class="legal-article">
+          <div class="legal-row">
+            <div class="legal-row-label">Créations protégées</div>
+            <div class="legal-row-value">
+              L'ensemble des créations présentes sur ce site — logotypes, identités visuelles, compositions graphiques,
+              typographies propriétaires, illustrations, photographies et productions éditoriales — constituent des
+              œuvres de l'esprit protégées par le <strong>Code de la propriété intellectuelle (articles L.111-1 et
+                suivants)</strong>.
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Titulaire des droits</div>
+            <div class="legal-row-value">
+              <strong>Studio Djezo</strong> — Tous droits réservés.<br>
+              Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments
+              de ce site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation écrite
+              préalable.
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Créations clients</div>
+            <div class="legal-row-value">
+              Les créations réalisées pour les clients de Studio Djezo font l'objet d'une cession de droits distincte,
+              définie contractuellement dans chaque devis ou contrat de prestation. Les droits cédés sont limités aux
+              usages explicitement mentionnés dans ledit contrat.
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Usage autorisé</div>
+            <div class="legal-row-value">
+              La consultation du site à des fins strictement personnelles et non commerciales est autorisée. Tout autre
+              usage est soumis à autorisation expresse de <a
+                href="mailto:contact@studiodjezo.com">contact@studiodjezo.com</a>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         04 — DONNÉES PERSONNELLES (RGPD)
+         ============================================================ -->
+      <section class="legal-section" id="rgpd">
+        <div class="legal-section-head">
+          <span class="legal-section-num">04 /</span>
+          <span class="legal-section-rule"></span>
+          <span class="legal-section-title">Données personnelles — RGPD</span>
+        </div>
+
+        <div class="rgpd-grid">
+          <div class="rgpd-item">
+            <div class="rgpd-item-label">Responsable du traitement</div>
+            <div class="rgpd-item-val">Studio Djezo<br>contact@studiodjezo.com<br>32 les mas de la solitude, 83220 Le
+              Pradet</div>
+          </div>
+          <div class="rgpd-item">
+            <div class="rgpd-item-label">Données collectées</div>
+            <div class="rgpd-item-val">
+              Ce site ne collecte <strong style="color:var(--chalk)">aucune donnée personnelle</strong> à des fins de
+              profilage ou de marketing. Seules les données transmises volontairement via le formulaire de contact sont
+              traitées.
+            </div>
+          </div>
+          <div class="rgpd-item">
+            <div class="rgpd-item-label">Finalité du traitement</div>
+            <div class="rgpd-item-val">Réponse aux demandes de contact et de devis uniquement. Aucune revente, aucun
+              transfert à des tiers.</div>
+          </div>
+          <div class="rgpd-item">
+            <div class="rgpd-item-label">Durée de conservation</div>
+            <div class="rgpd-item-val">Les données de contact sont conservées le temps nécessaire à la relation
+              commerciale, sans excéder <strong style="color:var(--chalk)">3 ans</strong> après le dernier échange.
+            </div>
+          </div>
+          <div class="rgpd-item">
+            <div class="rgpd-item-label">Base légale</div>
+            <div class="rgpd-item-val">Intérêt légitime (réponse à une demande initiée par l'utilisateur) — Art. 6.1.f
+              du RGPD.</div>
+          </div>
+          <div class="rgpd-item">
+            <div class="rgpd-item-label">Vos droits</div>
+            <div class="rgpd-item-val">Accès · Rectification · Suppression · Portabilité · Opposition · Limitation.
+              Exercice par email à contact@studiodjezo.com ou auprès de la <a href="https://www.cnil.fr" target="_blank"
+                rel="noopener noreferrer">CNIL</a>.</div>
+          </div>
+        </div>
+
+        <div class="legal-contact-block">
+          <div class="lcb-icon">→</div>
+          <div>
+            <div class="lcb-label">Exercer vos droits RGPD</div>
+            <div class="lcb-value"><a href="mailto:contact@studiodjezo.com">contact@studiodjezo.com</a></div>
+          </div>
+          <div>
+            <div class="lcb-label">Autorité de contrôle</div>
+            <div class="lcb-value"><a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">Commission
+                Nationale de l'Informatique et des Libertés (CNIL)</a></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         05 — COOKIES
+         ============================================================ -->
+      <section class="legal-section" id="cookies">
+        <div class="legal-section-head">
+          <span class="legal-section-num">05 /</span>
+          <span class="legal-section-rule"></span>
+          <span class="legal-section-title">Cookies &amp; traceurs</span>
+        </div>
+
+        <div class="legal-article">
+          <div class="legal-row">
+            <div class="legal-row-label">Politique cookies</div>
+            <div class="legal-row-value">
+              Ce site <strong>n'utilise pas de cookies à des fins publicitaires ou analytiques tiers</strong>. Aucun
+              traceur n'est déposé sur votre terminal sans votre consentement explicite.
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Cookies techniques</div>
+            <div class="legal-row-value">
+              Des cookies strictement nécessaires au fonctionnement du site peuvent être utilisés (session, préférences
+              d'affichage). Ils sont exemptés de consentement conformément aux recommandations CNIL.
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Analytics</div>
+            <div class="legal-row-value">
+              <strong>Absence d'outil de mesure d'audience.</strong>
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Gestion des préférences</div>
+            <div class="legal-row-value">
+              Vous pouvez configurer votre navigateur pour refuser ou supprimer les cookies. Cette action peut affecter
+              certaines fonctionnalités du site.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         06 — CRÉDITS
+         ============================================================ -->
+      <section class="legal-section" id="credits" style="border-bottom:0">
+        <div class="legal-section-head">
+          <span class="legal-section-num">06 /</span>
+          <span class="legal-section-rule"></span>
+          <span class="legal-section-title">Crédits &amp; technologies</span>
+        </div>
+
+        <div class="legal-article">
+          <div class="legal-row">
+            <div class="legal-row-label">Conception & création</div>
+            <div class="legal-row-value"><strong>Studio Djezo</strong> — Direction artistique, design, développement
+              front-end. Toulon, PACA.</div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Typographies</div>
+            <div class="legal-row-value">
+              <strong>Barlow Condensed</strong> &amp; <strong>Barlow</strong> — Jeremy Tribby (Google Fonts, licence
+              OFL)<br>
+              <strong>Space Grotesk</strong> — Florian Karsten (Google Fonts, licence OFL)
+            </div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Technologies</div>
+            <div class="legal-row-value">HTML5 · CSS3 · JavaScript Vanilla · Aucun framework tiers</div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Photographies</div>
+            <div class="legal-row-value"><strong>Production Studio Djezo</strong></div>
+          </div>
+          <div class="legal-row">
+            <div class="legal-row-label">Droit applicable</div>
+            <div class="legal-row-value">Le présent site et ses mentions légales sont soumis au <strong>droit
+                français</strong>. Tout litige relatif à son utilisation relève de la compétence exclusive des tribunaux
+              français.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="doc-footer">
+        <div>
+          <div class="doc-footer-sig-label">Document établi par</div>
+          <div class="doc-footer-sig-name">Studio <span class="o">Djezo</span><span style="color:var(--chalk)">.</span>
+          </div>
+          <div class="doc-footer-meta">DOC-LEGAL-2026-V1 · Droit français applicable · Toulon, PACA</div>
+        </div>
+        <a href="index.html" class="btn-primary">← Retour à la base</a>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    const navLinks = document.querySelectorAll('.sb-nav a');
+    const sections = ['edition', 'hebergement', 'pi', 'rgpd', 'cookies', 'credits'];
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-10% 0px -60% 0px' });
+    sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+  </script>
+</body>
+
+</html>

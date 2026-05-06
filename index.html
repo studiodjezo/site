@@ -1,0 +1,3512 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Djezo — Communication rétablie.</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzBiMGIwYn1AbWVkaWEgKHByZWZlcnMtY29sb3Itc2NoZW1lOmRhcmspey5jbHMtMXtmaWxsOiNmMmYyZjJ9fTwvc3R5bGU+PC9kZWZzPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzLjM4NSAyMS41MikiPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTkyLjk5IDUxLjcxSDI1Ljk4YzE1LjktMTAuMSAzNi41Ni0xNC43OCA2MC4xOS0xMy41N2w2LjY1LjM0LTEuMjMtNi41NEM4Ny45MSAxMi40OCA3Mi41NiAxLjczIDQ1Ljk1LjAxSDBzMCA2MC41OCAwIDYwLjU4aDczLjdjLTEyLjc1IDEwLjUyLTQxLjI0IDE5LjEzLTY4LjA5IDE4LjUyTDAgNzkuMDR2MzcuOTJoNDUuOTFjMTcuMDEgMCAyOS42My00LjcgMzcuNTEtMTMuOTcgNS40Ni02LjQzIDguNDQtMTUgOS4zMS0yMy4zMi45Ni05LjIyLjI2LTE4LjY5LjI2LTI3Ljk1Wk0xMC40NyAxMC40N2gzNC45N2MxOC4wNiAxLjIgMjkuMTggNi43NyAzMy44NiAxNy4wMWgtLjQzYy0yNy42OCAwLTUxLjE3IDcuODItNjguMzkgMjIuNzZWMTIuNDdaTTc1LjQ0IDk2LjJjLTUuOCA2LjgyLTE1LjczIDEwLjI4LTI5LjUzIDEwLjI4SDEwLjc3di0xNi45YzEzLjYtLjIgMjYuMTktMS45NCAzNy40NS01LjE5IDEyLjc4LTMuNjkgMjQuMjMtOS40MSAzNC4wMy0xNy4wMS44NSAxMi44Mi0xLjQzIDIyLjUwLTYuOCAyOC44M1oiLz48L2c+PC9zdmc+">
+  <link rel="stylesheet" href="colors_and_type.css">
+  <style>
+    /* ============================================================
+   FONTS — Barlow Condensed (display) + Barlow (corps) + Space Grotesk (UI)
+   Chargés via colors_and_type.css (Google Fonts import)
+   ============================================================ */
+
+    :root {
+      --font-display: "Barlow Condensed", sans-serif;
+      --font-sans: "Barlow", sans-serif;
+      --font-ui: "Space Grotesk", sans-serif;
+      --border: 1px solid rgba(242, 242, 242, 0.12);
+      --border-strong: 1px solid rgba(242, 242, 242, 0.35);
+      --hover: rgba(242, 242, 242, 0.04);
+      --bg-card: rgba(242, 242, 242, 0.05);
+      --bg-elev: rgba(242, 242, 242, 0.03);
+      --text-dim: rgba(242, 242, 242, 0.75);
+      --text-muted: rgba(242, 242, 242, 0.38);
+      --ebon: #0B0B0B;
+      --chalk: #F2F2F2;
+      --vibrant: #FD3A20;
+      --mint: #21FC91;
+      --magenta: #FC21A5;
+      --azure: #2179FC;
+    }
+
+    /* ============================================================
+   RESET & BASE
+   ============================================================ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--ebon);
+      color: var(--chalk);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--vibrant);
+      color: var(--chalk);
+    }
+
+    /* ============================================================
+   LAYOUT MONOLITHIQUE
+   ============================================================ */
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    /* ============================================================
+   SIDEBAR
+   ============================================================ */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      border-right: var(--border);
+      background: var(--ebon);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .sb-brand {
+      padding: 28px 24px 20px;
+      border-bottom: var(--border);
+    }
+
+    .sb-logo {
+      height: 28px;
+      width: auto;
+    }
+
+    .sb-tagline {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .sb-tagline .accent {
+      color: var(--vibrant);
+    }
+
+    .sb-status {
+      padding: 14px 24px;
+      border-bottom: var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sb-status-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--mint);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .sb-status-txt {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mint);
+    }
+
+    .sb-nav-label {
+      padding: 16px 24px 8px;
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .sb-nav {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sb-nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 24px;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: var(--text-dim);
+      border-left: 2px solid transparent;
+      transition: color var(--dur-fast), border-color var(--dur-fast), background var(--dur-fast);
+    }
+
+    .sb-nav a:hover {
+      color: var(--chalk);
+      background: var(--hover);
+    }
+
+    .sb-nav a.active {
+      color: var(--vibrant);
+      border-left-color: var(--vibrant);
+      background: rgba(253, 58, 32, 0.06);
+    }
+
+    .sb-nav a .nav-num {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      color: var(--text-muted);
+      min-width: 24px;
+    }
+
+    .sb-nav a.active .nav-num {
+      color: var(--vibrant);
+      opacity: 0.7;
+    }
+
+    .sb-wip {
+      padding: 20px 24px;
+      border-top: var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sb-wip img {
+      height: 20px;
+      width: auto;
+    }
+
+    .sb-foot {
+      margin-top: auto;
+      padding: 20px 24px;
+      border-top: var(--border);
+    }
+
+    .sb-foot-tagline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--text-dim);
+    }
+
+    .sb-foot-tagline .o {
+      color: var(--vibrant);
+    }
+
+    .sb-foot-meta {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      letter-spacing: 0.06em;
+    }
+
+    .sb-foot-legal {
+      display: block;
+      margin-top: 10px;
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--dur-fast);
+    }
+
+    .sb-foot-legal:hover {
+      color: var(--vibrant);
+    }
+
+    /* ============================================================
+   MAIN
+   ============================================================ */
+    .main {
+      min-width: 0;
+    }
+
+    /* ============================================================
+   SECTION COMMON
+   ============================================================ */
+    .section {
+      padding: 88px 72px;
+      border-bottom: var(--border);
+      position: relative;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 52px;
+    }
+
+    .section-num {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--vibrant);
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: rgba(242, 242, 242, 0.12);
+    }
+
+    .section-kicker {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+   01. HERO
+   ============================================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      border-bottom: var(--border);
+      /* Reset typography cascade from colors_and_type.css .hero rule */
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.55;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .hero-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: var(--border);
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .hero-topbar .live {
+      color: var(--mint);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-topbar .live::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background: var(--mint);
+      border-radius: 50%;
+    }
+
+    .hero-body {
+      flex: 1;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      position: relative;
+    }
+
+    /* ---- Hero Logo Stage ---- */
+    .hero-logo-stage {
+      position: relative;
+      overflow: hidden;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ebon);
+    }
+
+    /* Dot pattern background */
+    .hero-logo-stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(242, 242, 242, 0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    /* Scan line animation */
+    .hero-scan-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--vibrant) 40%, var(--vibrant) 60%, transparent 100%);
+      opacity: 0.35;
+      pointer-events: none;
+      animation: scan-y 4s cubic-bezier(.4, 0, .6, 1) infinite;
+    }
+
+    @keyframes scan-y {
+      0% {
+        top: -2px;
+        opacity: 0;
+      }
+
+      5% {
+        opacity: 0.35;
+      }
+
+      95% {
+        opacity: 0.35;
+      }
+
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+
+    /* Corner brackets */
+    .hero-bracket {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+      opacity: 0;
+      animation: bracket-in 0.4s var(--ease-out) forwards;
+    }
+
+    .hero-bracket.tl {
+      top: 24px;
+      left: 32px;
+      border-top: 1px solid var(--vibrant);
+      border-left: 1px solid var(--vibrant);
+      animation-delay: 0.6s;
+    }
+
+    .hero-bracket.tr {
+      top: 24px;
+      right: 32px;
+      border-top: 1px solid var(--vibrant);
+      border-right: 1px solid var(--vibrant);
+      animation-delay: 0.7s;
+    }
+
+    .hero-bracket.bl {
+      bottom: 24px;
+      left: 32px;
+      border-bottom: 1px solid var(--vibrant);
+      border-left: 1px solid var(--vibrant);
+      animation-delay: 0.8s;
+    }
+
+    .hero-bracket.br {
+      bottom: 24px;
+      right: 32px;
+      border-bottom: 1px solid var(--vibrant);
+      border-right: 1px solid var(--vibrant);
+      animation-delay: 0.9s;
+    }
+
+    @keyframes bracket-in {
+      from {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* WIP annotations */
+    .hero-anno-tl {
+      position: absolute;
+      top: 28px;
+      left: 72px;
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--vibrant);
+      opacity: 0;
+      animation: fade-in-up 0.4s var(--ease-out) 1.1s forwards;
+    }
+
+    .hero-anno-br {
+      position: absolute;
+      bottom: 28px;
+      right: 72px;
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0;
+      animation: fade-in-up 0.4s var(--ease-out) 1.2s forwards;
+      text-align: right;
+    }
+
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* The logo itself */
+    .hero-logo-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .hero-logo-img {
+      width: clamp(220px, 38vw, 520px);
+      height: auto;
+      opacity: 0;
+      animation: logo-reveal 0.7s var(--ease-out) 0.2s forwards;
+    }
+
+    @keyframes logo-reveal {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scaleX(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scaleX(1);
+      }
+    }
+
+    /* Boot sequence lines below logo */
+    .hero-boot-lines {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: clamp(220px, 38vw, 520px);
+    }
+
+    .hero-boot-line {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .hero-boot-line .bl-ok {
+      color: var(--mint);
+      flex-shrink: 0;
+    }
+
+    .hero-boot-line .bl-err {
+      color: var(--vibrant);
+      flex-shrink: 0;
+    }
+
+    .hero-boot-line .bl-bar {
+      flex: 1;
+      height: 1px;
+      background: rgba(242, 242, 242, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-boot-line .bl-bar::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0%;
+      background: var(--vibrant);
+      transition: width 0.6s var(--ease-out);
+    }
+
+    .hero-boot-line.loaded .bl-bar::after {
+      width: 100%;
+    }
+
+    .hero-wip-stack {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      pointer-events: none;
+    }
+
+    .hero-wip-stack img {
+      height: 22px;
+      width: auto;
+    }
+
+    .hero-text-block {
+      padding: 40px 40px 48px;
+      border-top: var(--border);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(38px, 5vw, 72px);
+      line-height: 0.96;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--chalk);
+      max-width: 18ch;
+    }
+
+    .hero-headline .hl-accent {
+      color: var(--vibrant);
+    }
+
+    .hero-baseline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(22px, 2.5vw, 36px);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .hero-baseline .white-dot {
+      color: var(--chalk);
+    }
+
+    .hero-sub {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--text-dim);
+      max-width: 44ch;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ebon);
+      background: var(--vibrant);
+      border: 1px solid var(--vibrant);
+      padding: 13px 22px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);
+    }
+
+    .btn-primary:hover {
+      background: var(--chalk);
+      border-color: var(--chalk);
+      color: var(--ebon);
+    }
+
+    .btn-outline {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--chalk);
+      background: transparent;
+      border: 1px solid rgba(242, 242, 242, 0.3);
+      padding: 13px 22px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);
+    }
+
+    .btn-outline:hover {
+      background: var(--chalk);
+      color: var(--ebon);
+      border-color: var(--chalk);
+    }
+
+    /* ============================================================
+   MARQUEE
+   ============================================================ */
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 11px 0;
+      border-bottom: var(--border);
+      background: var(--bg-elev);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .marquee-track {
+      display: inline-block;
+      animation: marquee-scroll 36s linear infinite;
+    }
+
+    .marquee span {
+      margin: 0 28px;
+    }
+
+    .marquee .mdot {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: var(--vibrant);
+      border-radius: 50%;
+      vertical-align: middle;
+      margin: 0 -12px;
+    }
+
+    @keyframes marquee-scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ============================================================
+   02. PHILOSOPHIE
+   ============================================================ */
+    .philosophie-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: var(--border);
+    }
+
+    .philo-col {
+      padding: 48px 40px;
+      border-right: var(--border);
+      position: relative;
+    }
+
+    .philo-col:last-child {
+      border-right: 0;
+    }
+
+    .philo-col-label {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--vibrant);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .philo-col-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(253, 58, 32, 0.3);
+    }
+
+    .philo-col h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(28px, 3vw, 44px);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 0.95;
+      color: var(--chalk);
+      margin-bottom: 20px;
+    }
+
+    .philo-col p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-dim);
+      max-width: 36ch;
+    }
+
+    .philo-manifest {
+      grid-column: 1 / -1;
+      padding: 56px 40px;
+      background: var(--vibrant);
+      border-top: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .philo-manifest-pattern {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 200px;
+      background-image: url("assets/v2/wip/pattern-dots-orange.svg");
+      background-size: 32px;
+      opacity: 0.12;
+    }
+
+    .philo-manifest-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(11, 11, 11, 0.5);
+      margin-bottom: 16px;
+    }
+
+    .philo-manifest-quote {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(28px, 3.5vw, 52px);
+      letter-spacing: -0.015em;
+      line-height: 1.05;
+      color: var(--ebon);
+      max-width: 22ch;
+    }
+
+    .philo-manifest-quote em {
+      font-style: normal;
+      background: var(--ebon);
+      color: var(--vibrant);
+      padding: 0 6px;
+    }
+
+    .philo-manifest-sig {
+      margin-top: 28px;
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(11, 11, 11, 0.45);
+    }
+
+    /* ============================================================
+   03-05. EXPERTISES
+   ============================================================ */
+    .expertises-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: var(--border);
+    }
+
+    .expertise-card {
+      padding: 40px 36px 48px;
+      border-right: var(--border);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: background var(--dur-fast);
+    }
+
+    .expertise-card:last-child {
+      border-right: 0;
+    }
+
+    .expertise-card:hover {
+      background: var(--hover);
+    }
+
+    .exp-number {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--vibrant);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .exp-number img {
+      height: 18px;
+      width: auto;
+    }
+
+    .exp-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(40px, 4.5vw, 68px);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      color: var(--chalk);
+      margin-bottom: 24px;
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 24px;
+      border-top: var(--border);
+    }
+
+    .exp-tag {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: var(--border);
+      font-family: var(--font-ui);
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+
+    .exp-tag-arrow {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .exp-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 20px;
+    }
+
+    .exp-status-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--mint);
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .exp-pattern {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      opacity: 0.06;
+      background-image: url("assets/v2/wip/pattern-diagonal-dark.svg");
+      background-size: 20px;
+    }
+
+    /* ============================================================
+   04. CALCULETTE — KEY FEATURE
+   ============================================================ */
+    .calculette-section {
+      background: var(--ebon);
+      border-bottom: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calc-header {
+      padding: 64px 72px 40px;
+      border-bottom: var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .calc-title-block {}
+
+    .calc-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(48px, 7vw, 96px);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      color: var(--chalk);
+    }
+
+    .calc-title .accent {
+      color: var(--vibrant);
+    }
+
+    .calc-sub {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    .calc-wip {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .calc-wip img {
+      height: 20px;
+      width: auto;
+    }
+
+    .calc-body {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      min-height: 500px;
+    }
+
+    .calc-controls {
+      padding: 40px 48px;
+      border-right: var(--border);
+    }
+
+    .calc-control-group {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: var(--border);
+    }
+
+    .calc-control-group:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .calc-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--vibrant);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .calc-label-val {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--chalk);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .calc-slider-track {
+      position: relative;
+      height: 2px;
+      background: rgba(242, 242, 242, 0.12);
+      margin: 12px 0;
+    }
+
+    .calc-slider-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 2px;
+      background: var(--vibrant);
+      pointer-events: none;
+    }
+
+    .calc-slider {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 24px;
+      opacity: 0;
+      cursor: pointer;
+      margin: 0;
+      -webkit-appearance: none;
+    }
+
+    .calc-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .calc-option {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border: 1px solid rgba(242, 242, 242, 0.2);
+      cursor: pointer;
+      color: var(--text-dim);
+      background: transparent;
+      transition: all var(--dur-fast);
+      user-select: none;
+    }
+
+    .calc-option:hover {
+      border-color: rgba(242, 242, 242, 0.5);
+      color: var(--chalk);
+    }
+
+    .calc-option.active {
+      background: var(--vibrant);
+      border-color: var(--vibrant);
+      color: var(--ebon);
+    }
+
+    .calc-result {
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: rgba(242, 242, 242, 0.02);
+    }
+
+    .calc-result-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .calc-result-price {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(56px, 6vw, 88px);
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      color: var(--chalk);
+    }
+
+    .calc-result-price .cur {
+      font-size: 0.45em;
+      color: var(--text-muted);
+      vertical-align: top;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .calc-result-range {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      letter-spacing: 0.06em;
+    }
+
+    .calc-result-breakdown {
+      margin-top: 32px;
+      border-top: var(--border);
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .calc-breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: var(--border);
+      font-family: var(--font-ui);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .calc-breakdown-row:last-child {
+      border-bottom: 0;
+    }
+
+    .calc-breakdown-val {
+      color: var(--chalk);
+      font-weight: 600;
+    }
+
+    .calc-breakdown-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0 0;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .calc-breakdown-total .calc-breakdown-val {
+      color: var(--vibrant);
+      font-size: 14px;
+    }
+
+    .calc-cta {
+      margin-top: 28px;
+    }
+
+    .calc-cta .btn-primary {
+      width: 100%;
+      text-align: center;
+      display: block;
+    }
+
+    .calc-disclaimer {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 12px;
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+    }
+
+    .calc-progress-bar {
+      height: 3px;
+      background: rgba(242, 242, 242, 0.08);
+      margin-top: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calc-progress-bar::after {
+      content: '';
+      position: absolute;
+      left: -100%;
+      top: 0;
+      width: 40%;
+      height: 100%;
+      background: var(--vibrant);
+      animation: progress-scan 3s ease-in-out infinite;
+    }
+
+    @keyframes progress-scan {
+      0% {
+        left: -40%;
+      }
+
+      100% {
+        left: 100%;
+      }
+    }
+
+    /* ============================================================
+   05. CONTACT
+   ============================================================ */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: var(--border);
+    }
+
+    .contact-info {
+      padding: 48px 40px;
+      border-right: var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-location-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .contact-city {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(40px, 5vw, 72px);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      color: var(--chalk);
+    }
+
+    .contact-city .accent {
+      color: var(--vibrant);
+    }
+
+    .contact-details {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .contact-detail-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: var(--border);
+    }
+
+    .contact-detail-row:first-child {
+      border-top: var(--border);
+    }
+
+    .contact-detail-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .contact-detail-val {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      color: var(--text-dim);
+      text-align: right;
+    }
+
+    .contact-detail-val a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .contact-detail-val a:hover {
+      color: var(--vibrant);
+    }
+
+    .contact-map-placeholder {
+      margin-top: 32px;
+      height: 160px;
+      background: rgba(242, 242, 242, 0.03);
+      border: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-map-inner {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .contact-map-cross {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.25;
+    }
+
+    .contact-map-cross img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .contact-form {
+      padding: 48px 40px;
+    }
+
+    .contact-form-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid rgba(242, 242, 242, 0.2);
+      padding: 10px 0;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--chalk);
+      outline: 0;
+      resize: none;
+      border-radius: 0;
+      appearance: none;
+      transition: border-color var(--dur-fast);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-bottom-color: var(--vibrant);
+    }
+
+    .field-wide {
+      grid-column: 1 / -1;
+    }
+
+    .field select option {
+      background: #1a1a1a;
+      color: var(--chalk);
+    }
+
+    .form-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+      padding-top: 24px;
+      border-top: var(--border);
+    }
+
+    .form-hint {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    #form-sent {
+      display: none;
+    }
+
+    #form-error {
+      display: none;
+      margin-top: 16px;
+      padding: 12px 16px;
+      border: 1px solid var(--vibrant);
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--vibrant);
+    }
+
+    .sent-block {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 28px 0;
+    }
+
+    .sent-check {
+      width: 56px;
+      height: 56px;
+      background: var(--vibrant);
+      color: var(--ebon);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .sent-text {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--chalk);
+    }
+
+    /* ============================================================
+   FOOTER
+   ============================================================ */
+    .footer {
+      background: #080808;
+      padding: 56px 72px 32px;
+      border-top: var(--border);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: var(--border);
+    }
+
+    .footer-big {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(40px, 5vw, 72px);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 0.88;
+    }
+
+    .footer-big span {
+      display: block;
+      color: var(--chalk);
+    }
+
+    .footer-big span:last-child {
+      color: var(--vibrant);
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col-label {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .footer-col a,
+    .footer-col p {
+      font-size: 13px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-family: var(--font-sans);
+    }
+
+    .footer-col a:hover {
+      color: var(--vibrant);
+    }
+
+    .footer-btm {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .footer-btm .tagline .o {
+      color: var(--vibrant);
+    }
+
+    /* ============================================================
+   MOBILE — burger sidebar
+   ============================================================ */
+    .mobile-topbar {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--ebon);
+      border-bottom: var(--border);
+      padding: 0 20px;
+      height: 52px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-topbar img {
+      height: 24px;
+    }
+
+    .burger {
+      background: transparent;
+      border: var(--border);
+      padding: 8px 12px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .burger span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: var(--chalk);
+      transition: all var(--dur-fast);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 52px 0 0 0;
+      z-index: 150;
+      background: var(--ebon);
+      border-top: var(--border);
+      padding: 24px 20px;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: var(--border);
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--chalk);
+      letter-spacing: 0.04em;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--vibrant);
+    }
+
+    .mobile-menu .mn-num {
+      font-size: 10px;
+      color: var(--text-muted);
+      min-width: 28px;
+    }
+
+    /* ============================================================
+   REVEAL ANIMATIONS
+   ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+   RESPONSIVE
+   ============================================================ */
+    @media (max-width: 1100px) {
+      .section {
+        padding: 64px 40px;
+      }
+
+      .hero-text-block {
+        padding: 32px 32px 40px;
+      }
+
+      .calc-header {
+        padding: 48px 40px 32px;
+      }
+
+      .calc-body {
+        grid-template-columns: 1fr;
+      }
+
+      .calc-result {
+        border-top: var(--border);
+        border-right: 0;
+      }
+
+      .footer {
+        padding: 48px 40px 28px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-topbar {
+        display: flex;
+      }
+
+      .hero-text-block {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .hero-headline {
+        max-width: none;
+      }
+
+      .hero-baseline {
+        text-align: left;
+      }
+
+      .hero-cta-group {
+        align-items: flex-start;
+        flex-direction: row;
+      }
+
+      .philosophie-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .philo-col {
+        border-right: 0;
+        border-bottom: var(--border);
+      }
+
+      .expertises-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .expertise-card {
+        border-right: 0;
+        border-bottom: var(--border);
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-info {
+        border-right: 0;
+        border-bottom: var(--border);
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section {
+        padding: 48px 24px;
+      }
+
+      .calc-header {
+        padding: 40px 24px 28px;
+      }
+
+      .calc-controls {
+        padding: 32px 24px;
+      }
+
+      .calc-result {
+        padding: 32px 24px;
+      }
+
+      .contact-info,
+      .contact-form {
+        padding: 36px 24px;
+      }
+
+      .footer {
+        padding: 40px 24px 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-topbar {
+        padding: 14px 20px;
+      }
+
+      .hero-text-block {
+        padding: 24px 20px 32px;
+      }
+
+      .hero-image-block {
+        min-height: 280px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+      }
+    }
+
+    /* ============================================================
+   05. RAPPORTS D'INTERVENTION
+   ============================================================ */
+    .rapports-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: var(--border);
+    }
+
+    .rapport-card {
+      padding: 40px 36px 48px;
+      border-right: var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: background var(--dur-fast);
+    }
+
+    .rapport-card:last-child {
+      border-right: 0;
+    }
+
+    .rapport-card:hover {
+      background: var(--hover);
+    }
+
+    .rapport-bracket {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+    }
+
+    .rapport-bracket.tl {
+      top: 14px;
+      left: 14px;
+      border-top: 1px solid var(--vibrant);
+      border-left: 1px solid var(--vibrant);
+    }
+
+    .rapport-bracket.tr {
+      top: 14px;
+      right: 14px;
+      border-top: 1px solid var(--vibrant);
+      border-right: 1px solid var(--vibrant);
+    }
+
+    .rapport-bracket.bl {
+      bottom: 14px;
+      left: 14px;
+      border-bottom: 1px solid var(--vibrant);
+      border-left: 1px solid var(--vibrant);
+    }
+
+    .rapport-bracket.br {
+      bottom: 14px;
+      right: 14px;
+      border-bottom: 1px solid var(--vibrant);
+      border-right: 1px solid var(--vibrant);
+    }
+
+    .rapport-id {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--vibrant);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .rapport-status-ok {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mint);
+      border: 1px solid rgba(33, 252, 145, 0.3);
+      padding: 2px 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .rapport-status-ok::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--mint);
+      border-radius: 50%;
+    }
+
+    .rapport-status-wip {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--vibrant);
+      border: 1px solid rgba(253, 58, 32, 0.3);
+      padding: 2px 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .rapport-status-wip::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--vibrant);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .rapport-visual {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--bg-elev);
+      border: var(--border);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .rapport-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(242, 242, 242, 0.045) 1px, transparent 1px);
+      background-size: 18px 18px;
+      pointer-events: none;
+    }
+
+    .rapport-visual-stripes {
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 22px,
+          rgba(242, 242, 242, 0.012) 22px, rgba(242, 242, 242, 0.012) 23px);
+    }
+
+    .rapport-visual-cross {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px;
+      height: 48px;
+      opacity: 0.18;
+    }
+
+    .rapport-visual-cross::before,
+    .rapport-visual-cross::after {
+      content: '';
+      position: absolute;
+      background: var(--vibrant);
+    }
+
+    .rapport-visual-cross::before {
+      width: 1px;
+      height: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .rapport-visual-cross::after {
+      height: 1px;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .rapport-visual-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .rapport-visual-label {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .rapport-visual-wip {
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      z-index: 3;
+    }
+
+    .rapport-visual-wip img {
+      height: 14px;
+      width: auto;
+      opacity: 0.85;
+    }
+
+    .rapport-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(32px, 3.5vw, 52px);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      color: var(--chalk);
+      margin-bottom: 18px;
+    }
+
+    .rapport-brief-kicker {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--vibrant);
+      margin-bottom: 6px;
+    }
+
+    .rapport-brief {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    .rapport-progress-wrap {
+      margin-top: 20px;
+    }
+
+    .rapport-progress-head {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .rapport-progress-bar {
+      height: 2px;
+      background: rgba(242, 242, 242, 0.08);
+      position: relative;
+    }
+
+    .rapport-progress-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background: var(--vibrant);
+    }
+
+    /* ---- Rapport card links ---- */
+    a.rapport-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      cursor: crosshair;
+    }
+
+    .rapport-hover-overlay {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      opacity: 0;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 5;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .rapport-hover-overlay span {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--vibrant);
+      border: 1px solid rgba(253, 58, 32, 0.5);
+      padding: 6px 16px;
+      background: var(--ebon);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rapport-hover-overlay span::before {
+      content: '→';
+    }
+
+    a.rapport-card:hover .rapport-hover-overlay {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    a.rapport-card:hover {
+      background: var(--hover);
+    }
+
+    /* ============================================================
+   06. SPÉCIFICATIONS DE MARQUE (BRANDBOOK CTA)
+   ============================================================ */
+    .brandbook-section {
+      border-bottom: var(--border);
+    }
+
+    .brandbook-inner {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      border-top: var(--border);
+      min-height: 500px;
+    }
+
+    .brandbook-left {
+      padding: 64px 72px;
+      border-right: var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brandbook-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(-45deg, transparent, transparent 36px,
+          rgba(242, 242, 242, 0.016) 36px, rgba(242, 242, 242, 0.016) 37px);
+      pointer-events: none;
+    }
+
+    .bb-stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(253, 58, 32, 0.35);
+      padding: 6px 14px;
+      width: fit-content;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .bb-stamp-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--vibrant);
+      border-radius: 50%;
+    }
+
+    .bb-stamp-txt {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--vibrant);
+    }
+
+    .brandbook-headline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(56px, 7vw, 96px);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 0.88;
+      color: var(--chalk);
+      position: relative;
+      z-index: 2;
+      margin-bottom: 24px;
+    }
+
+    .brandbook-headline em {
+      font-style: normal;
+      color: var(--vibrant);
+    }
+
+    .brandbook-sub {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-dim);
+      max-width: 42ch;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 36px;
+    }
+
+    .bb-tokens {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .bb-token {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border: var(--border);
+      padding: 5px 12px;
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      transition: border-color var(--dur-fast);
+    }
+
+    .bb-token:hover {
+      border-color: rgba(242, 242, 242, 0.35);
+      color: var(--chalk);
+    }
+
+    .bb-token-swatch {
+      width: 11px;
+      height: 11px;
+      flex-shrink: 0;
+    }
+
+    .brandbook-right {
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: rgba(242, 242, 242, 0.02);
+    }
+
+    .bb-dossier-label {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .bb-cover {
+      flex: 1;
+      border: var(--border-strong);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+    }
+
+    .bb-cover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--vibrant);
+    }
+
+    .bb-cover-wip {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .bb-cover-wip img {
+      height: 18px;
+      width: auto;
+    }
+
+    .bb-cover-ref {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .bb-cover-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 30px;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: var(--chalk);
+      margin-top: 12px;
+    }
+
+    .bb-cover-subtitle {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .bb-cover-swatches {
+      display: flex;
+      gap: 4px;
+      margin-top: 20px;
+    }
+
+    .bb-swatch-wrap {
+      flex: 1;
+    }
+
+    .bb-swatch {
+      height: 28px;
+    }
+
+    .bb-swatch-name {
+      font-family: var(--font-ui);
+      font-size: 7px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+
+    .bb-cover-meta {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+
+    .bb-cta-hint {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    @media (max-width: 1100px) {
+      .rapports-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rapport-card {
+        border-right: 0;
+        border-bottom: var(--border);
+      }
+
+      .brandbook-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .brandbook-left {
+        padding: 48px 40px;
+        border-right: 0;
+        border-bottom: var(--border);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .brandbook-left {
+        padding: 40px 24px;
+      }
+
+      .brandbook-right {
+        padding: 36px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========== MOBILE TOPBAR ========== -->
+  <div class="mobile-topbar">
+    <img src="assets/v2/sd-logo-h-main-chalk.svg" alt="Studio Djezo">
+    <button class="burger" id="burgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#hero" onclick="closeMobile()"><span class="mn-num">01/</span>Studio</a>
+    <a href="#philosophie" onclick="closeMobile()"><span class="mn-num">02/</span>Philosophie</a>
+    <a href="#expertises" onclick="closeMobile()"><span class="mn-num">03–04/</span>Expertises</a>
+    <a href="#interventions" onclick="closeMobile()"><span class="mn-num">05/</span>Rapports d'intervention</a>
+    <a href="#brandbook" onclick="closeMobile()"><span class="mn-num">06/</span>Marque</a>
+    <a href="#calculette" onclick="closeMobile()"><span class="mn-num">07/</span>Calculette</a>
+    <a href="#contact" onclick="closeMobile()"><span class="mn-num">08/</span>Contact</a>
+  </nav>
+
+  <!-- ========== LAYOUT ========== -->
+  <div class="layout">
+
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sb-brand">
+        <img class="sb-logo" src="assets/v2/sd-logo-h-main-chalk.svg" alt="Studio Djezo">
+        <div class="sb-tagline">Studio graphique · Communication <span class="accent">rétablie</span>.</div>
+      </div>
+
+      <div class="sb-status">
+        <div class="sb-status-dot"></div>
+        <div class="sb-status-txt">System Online</div>
+      </div>
+
+      <div class="sb-nav-label">Navigation</div>
+      <nav class="sb-nav" id="sbnav">
+        <a href="#hero" class="active"><span class="nav-num">01/</span>Studio</a>
+        <a href="#philosophie"><span class="nav-num">02/</span>Philosophie</a>
+        <a href="#expertises"><span class="nav-num">03–04/</span>Expertises</a>
+        <a href="#interventions"><span class="nav-num">05/</span>Rapports d'intervention</a>
+        <a href="#brandbook"><span class="nav-num">06/</span>Marque</a>
+        <a href="#calculette"><span class="nav-num">07/</span>Calculette</a>
+        <a href="#contact"><span class="nav-num">08/</span>Contact</a>
+      </nav>
+
+      <div class="sb-wip">
+        <img src="assets/v2/wip/label-user-admin-orange.svg" alt="v2.0">
+      </div>
+
+      <div class="sb-foot">
+        <div class="sb-foot-tagline">Communication <span class="o">rétablie</span>.</div>
+        <div class="sb-foot-meta">v2.0 · Mai 2026<br>Toulon, PACA</div>
+        <a href="legal.html" class="sb-foot-legal">[Mentions légales]</a>
+      </div>
+    </aside>
+
+    <!-- ========== MAIN ========== -->
+    <main class="main" id="main">
+
+      <!-- ============================================================
+         01. HERO
+         ============================================================ -->
+      <section id="hero" data-screen-label="01 Studio">
+        <div class="hero">
+          <div class="hero-topbar">
+            <span>Studio graphique indépendant · PACA</span>
+            <span class="live">System online</span>
+            <span>MAI 2026 — V2.0</span>
+          </div>
+
+          <div class="hero-body">
+            <!-- Logo stage animé -->
+            <div class="hero-logo-stage">
+              <div class="hero-scan-line"></div>
+
+              <!-- Brackets de focus -->
+              <div class="hero-bracket tl"></div>
+              <div class="hero-bracket tr"></div>
+              <div class="hero-bracket bl"></div>
+              <div class="hero-bracket br"></div>
+
+              <!-- Annotations techniques -->
+              <div class="hero-anno-tl">SD-2026 · SYSTEM INIT</div>
+              <div class="hero-anno-br">Toulon · PACA · FR</div>
+
+
+              <!-- Logo + boot lines -->
+              <div class="hero-logo-wrap">
+                <img class="hero-logo-img" src="assets/v2/sd-logo-h-main-chalk.svg" alt="Studio Djezo">
+                <div class="hero-boot-lines" id="bootLines">
+                  <div class="hero-boot-line" data-delay="900">
+                    <span class="bl-ok">✓</span>
+                    <span>Identité visuelle</span>
+                    <span class="bl-bar"></span>
+                  </div>
+                  <div class="hero-boot-line" data-delay="1100">
+                    <span class="bl-ok">✓</span>
+                    <span>Direction artistique</span>
+                    <span class="bl-bar"></span>
+                  </div>
+                  <div class="hero-boot-line" data-delay="1300">
+                    <span class="bl-ok">✓</span>
+                    <span>Print &amp; Édition</span>
+                    <span class="bl-bar"></span>
+                  </div>
+                  <div class="hero-boot-line" data-delay="1500">
+                    <span class="bl-err">→</span>
+                    <span>Communication rétablie.</span>
+                    <span class="bl-bar"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-text-block">
+              <div>
+                <div class="hero-headline reveal">
+                  Clarifier. Distinguer.<br>
+                  Créer. <span class="hl-accent">Accompagner</span>.
+                </div>
+                <div class="hero-sub reveal" style="transition-delay:80ms">
+                  Nous avons conçu un espace où l’identité visuelle se construit avec clarté, précision et efficacité.
+                  Notre approche simplifie chaque étape : des offres claires, adaptées aux besoins réels sans perte de
+                  temps.
+
+                  Un bon design accompagne la croissance, structure un
+                  projet et lui donne son élan en privilégiant l'humain d'abord. C'est ça rétablir la
+                  communication.
+                </div>
+              </div>
+              <div class="hero-cta-group reveal" style="transition-delay:160ms">
+                <a href="#contact" class="btn-primary">Prendre contact →</a>
+                <a href="#expertises" class="btn-outline">Nos expertises →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>Identité visuelle</span><span class="mdot"></span>
+          <span>Direction artistique</span><span class="mdot"></span>
+          <span>Édition imprimée</span><span class="mdot"></span>
+          <span>Communication rétablie</span><span class="mdot"></span>
+          <span>Studio Djezo</span><span class="mdot"></span>
+          <span>Branding</span><span class="mdot"></span>
+          <span>Print</span><span class="mdot"></span>
+          <span>Digital</span><span class="mdot"></span>
+          <span>Logo</span><span class="mdot"></span>
+          <span>Projet éditoriaux</span><span class="mdot"></span>
+          <span>Flyers</span><span class="mdot"></span>
+          <span>Toulon · PACA</span><span class="mdot"></span>
+          <span>Identité visuelle</span><span class="mdot"></span>
+          <span>Direction artistique</span><span class="mdot"></span>
+          <span>Édition imprimée</span><span class="mdot"></span>
+          <span>Communication rétablie</span><span class="mdot"></span>
+          <span>Studio Djezo</span><span class="mdot"></span>
+          <span>Branding</span><span class="mdot"></span>
+          <span>Print</span><span class="mdot"></span>
+          <span>Digital</span><span class="mdot"></span>
+          <span>Logo</span><span class="mdot"></span>
+          <span>Projet éditoriaux</span><span class="mdot"></span>
+          <span>Flyers</span><span class="mdot"></span>
+          <span>Toulon · PACA</span><span class="mdot"></span>
+        </div>
+      </div>
+
+      <!-- ============================================================
+         02. PHILOSOPHIE
+         ============================================================ -->
+      <section class="section" id="philosophie" data-screen-label="02 Philosophie">
+        <div class="section-head">
+          <span class="section-num">02 /</span>
+          <span class="section-rule"></span>
+          <span class="section-kicker">L'espace de création</span>
+        </div>
+
+        <div class="philosophie-grid reveal">
+          <div class="philo-col">
+            <div class="philo-col-label">Vision stratégique</div>
+            <h3>Un studio,<br>pas une agence.</h3>
+            <p>Studio Djezo n'est pas une agence, mais un espace de création. Chaque projet est traité comme une œuvre,
+              avec les exigences d'un auteur, la rigueur d'un artisan et la clarté d'un stratège.</p>
+            <p style="margin-top:16px">On ne vend pas des prestations. On construit des prises de parole visuelles qui
+              tiennent dans le temps.</p>
+          </div>
+          <div class="philo-col">
+            <div class="philo-col-label">Exécution artistique</div>
+            <h3>Singulier.<br>Durable.</h3>
+            <p>Du vintage au contemporain sans nostalgie. Nos créations s'ancrent dans une culture visuelle exigeante,
+              loin des solutions standardisées et des templates recyclés.</p>
+            <p style="margin-top:16px">Chaque trait est justifié. Chaque couleur est choisie. Chaque typographie parle
+              pour vous. La cohérence est assurée, la communication est rétablie.</p>
+          </div>
+
+          <div class="philo-manifest">
+            <div class="philo-manifest-pattern"></div>
+            <div class="philo-manifest-label">Manifeste · Studio Djezo</div>
+            <div class="philo-manifest-quote">
+              À la croisée de l'art et du design, <em>Studio Djezo</em> privilégie des créations originales, expressives
+              et durables, loin des solutions standardisées.
+            </div>
+            <div class="philo-manifest-sig">— Djezo, 2026</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         03-05. EXPERTISES
+         ============================================================ -->
+      <section class="section" id="expertises" data-screen-label="03 Expertises">
+        <div class="section-head">
+          <span class="section-num">03–05 /</span>
+          <span class="section-rule"></span>
+          <span class="section-kicker">Fiches techniques</span>
+        </div>
+
+        <div class="expertises-grid reveal">
+          <!-- 03 BRANDING -->
+          <div class="expertise-card">
+            <div class="exp-number">
+              <span>03 / Branding</span>
+              <img src="assets/v2/wip/label-approved-yes-orange.svg" alt="">
+            </div>
+            <div class="exp-title">Brand<br>ing.</div>
+            <div class="exp-tags">
+              <div class="exp-tag"><span>Logotype & Identité</span><span class="exp-tag-arrow">→</span></div>
+              <div class="exp-tag"><span>Charte graphique</span><span class="exp-tag-arrow">→</span></div>
+              <div class="exp-tag"><span>Direction artistique</span><span class="exp-tag-arrow">→</span></div>
+              <div class="exp-tag"><span>Naming & Positionnement</span><span class="exp-tag-arrow">→</span></div>
+            </div>
+            <img src="assets/v2/wip/bar-progress-75-orange.svg" style="height:18px;width:auto" alt="">
+            <div class="exp-status">
+              <span class="exp-status-dot"></span>
+              Disponible
+            </div>
+            <div class="exp-pattern"></div>
+          </div>
+
+          <!-- 04 PRINT -->
+          <div class="expertise-card">
+            <div class="exp-number">
+              <span>04 / Print</span>
+              <img src="assets/v2/wip/marker-focus-brackets-white.svg" alt="">
+            </div>
+            <div class="exp-title">Print.</div>
+            <div class="exp-tags">
+              <div class="exp-tag"><span>Affiches & Flyers</span><span class="exp-tag-arrow">→</span></div>
+              <div class="exp-tag"><span>Édition & Livres</span><span class="exp-tag-arrow">→</span></div>
+              <div class="exp-tag"><span>Packaging</span><span class="exp-tag-arrow">→</span></div>
+              <div class="exp-tag"><span>Signalétique</span><span class="exp-tag-arrow">→</span></div>
+            </div>
+            <img src="assets/v2/wip/bar-progress-100-orange.svg" style="height:18px;width:auto" alt="">
+            <div class="exp-status">
+              <span class="exp-status-dot"></span>
+              Disponible
+            </div>
+            <div class="exp-pattern"></div>
+          </div>
+
+          <!-- 05 DIGITAL -->
+          <div class="expertise-card">
+            <div class="exp-number">
+              <span>05 / Digital</span>
+              <img src="assets/v2/wip/label-build-version-orange.svg" alt="">
+            </div>
+            <div class="exp-title">Digi<br>tal.</div>
+            <div class="exp-tags">
+              <div class="exp-tag"><span>UI / UX Design</span><span class="exp-tag-arrow">→</span></div>
+              <div class="exp-tag"><span>Sites vitrines</span><span class="exp-tag-arrow">→</span></div>
+              <div class="exp-tag"><span>Réseaux sociaux</span><span class="exp-tag-arrow">→</span></div>
+              <div class="exp-tag"><span>Motion & Vidéo</span><span class="exp-tag-arrow">→</span></div>
+            </div>
+            <img src="assets/v2/wip/bar-loading-orange.svg" style="height:18px;width:auto" alt="">
+            <div class="exp-status">
+              <span class="exp-status-dot"></span>
+              Disponible
+            </div>
+            <div class="exp-pattern"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         05. RAPPORTS D'INTERVENTION (PORTFOLIO)
+         ============================================================ -->
+      <section class="section" id="interventions" data-screen-label="05 Interventions">
+        <div class="section-head">
+          <span class="section-num">05 /</span>
+          <span class="section-rule"></span>
+          <span class="section-kicker">Rapports d'intervention</span>
+        </div>
+
+        <div class="rapports-grid reveal">
+
+          <!-- SD-2026-001 -->
+          <a href="interventions/projet-01.html" class="rapport-card">
+            <div class="rapport-bracket tl"></div>
+            <div class="rapport-bracket tr"></div>
+            <div class="rapport-bracket bl"></div>
+            <div class="rapport-bracket br"></div>
+
+            <div class="rapport-id">
+              <span>SD-2026-001</span>
+              <div class="rapport-status-wip">En cours</div>
+            </div>
+
+            <div class="rapport-visual">
+              <div class="rapport-visual-stripes"></div>
+              <div class="rapport-visual-cross"></div>
+              <div class="rapport-visual-inner">
+                <div>
+                  <div class="rapport-visual-label">Visuel · En attente</div>
+                  <div style="display:flex;justify-content:center;margin-top:10px">
+                    <img src="assets/v2/wip/marker-focus-brackets-orange.svg"
+                      style="height:30px;width:auto;opacity:0.55" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="rapport-visual-wip">
+                <img src="assets/v2/wip/bar-progress-75-orange.svg" alt="">
+              </div>
+            </div>
+
+            <div class="rapport-title">Identité<br>Rétablie.</div>
+
+            <div class="rapport-brief-kicker">Panne diagnostiquée</div>
+            <div class="rapport-brief">Logo générique, absence de fil conducteur visuel. Le client était invisible parmi
+              ses concurrents directs.</div>
+
+            <div class="rapport-brief-kicker">Intervention en cours</div>
+            <div class="rapport-brief">Direction créative validée, logotype en cours de finalisation. Visuels en attente d'intégration.</div>
+
+            <div class="rapport-progress-wrap">
+              <div class="rapport-progress-head"><span>Avancement</span><span>75%</span></div>
+              <div class="rapport-progress-bar">
+                <div class="rapport-progress-fill" style="width:75%"></div>
+              </div>
+            </div>
+            <div class="rapport-hover-overlay"><span>Voir le rapport</span></div>
+          </a>
+
+          <!-- SD-2026-002 -->
+          <a href="interventions/projet-02.html" class="rapport-card">
+            <div class="rapport-bracket tl"></div>
+            <div class="rapport-bracket tr"></div>
+            <div class="rapport-bracket bl"></div>
+            <div class="rapport-bracket br"></div>
+
+            <div class="rapport-id">
+              <span>SD-2026-002</span>
+              <div class="rapport-status-ok">Livré</div>
+            </div>
+
+            <div class="rapport-visual">
+              <img src="assets/v2/imagery/projet2/principal.png" alt="Dossier Galaup / Jouanneau — Saison 2026"
+                style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1;display:block">
+              <div
+                style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,11,11,0.15) 0%,rgba(11,11,11,0) 45%,rgba(11,11,11,0.45) 100%);z-index:2;pointer-events:none">
+              </div>
+              <div class="rapport-visual-wip" style="z-index:3">
+                <img src="assets/v2/wip/label-approved-yes-orange.svg" alt="">
+              </div>
+            </div>
+
+            <div class="rapport-title">Dossier<br>Partenariat.</div>
+
+            <div class="rapport-brief-kicker">Panne diagnostiquée</div>
+            <div class="rapport-brief">Dossier sponsor sur Google Docs — générique, sans impact. L'équipage de rallye
+              FFSA Galaup/Jouanneau restait invisible auprès des investisseurs.</div>
+
+            <div class="rapport-brief-kicker">Réparation effectuée</div>
+            <div class="rapport-brief">Dossier de partenariat pro — DA racing, spreads éditoriaux, packages
+              investisseurs. Même contenu. Pas le même impact.</div>
+
+            <div class="rapport-progress-wrap">
+              <div class="rapport-progress-head"><span>Avancement</span><span>100%</span></div>
+              <div class="rapport-progress-bar">
+                <div class="rapport-progress-fill" style="width:100%"></div>
+              </div>
+            </div>
+            <div class="rapport-hover-overlay"><span>Voir le rapport</span></div>
+          </a>
+
+          <!-- SD-2026-003 -->
+          <a href="interventions/projet-03.html" class="rapport-card">
+            <div class="rapport-bracket tl"></div>
+            <div class="rapport-bracket tr"></div>
+            <div class="rapport-bracket bl"></div>
+            <div class="rapport-bracket br"></div>
+
+            <div class="rapport-id">
+              <span>SD-2026-003</span>
+              <div class="rapport-status-wip">En cours</div>
+            </div>
+
+            <div class="rapport-visual">
+              <div class="rapport-visual-stripes"></div>
+              <div class="rapport-visual-cross"></div>
+              <div class="rapport-visual-inner">
+                <div>
+                  <div class="rapport-visual-label">Visuel · En attente</div>
+                  <div style="display:flex;justify-content:center;margin-top:10px">
+                    <img src="assets/v2/wip/marker-focus-brackets-white.svg" style="height:30px;width:auto;opacity:0.25"
+                      alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="rapport-visual-wip">
+                <img src="assets/v2/wip/bar-loading-orange.svg" alt="">
+              </div>
+            </div>
+
+            <div class="rapport-title">Digital<br>Activé.</div>
+
+            <div class="rapport-brief-kicker">Panne diagnostiquée</div>
+            <div class="rapport-brief">Présence digitale inexistante. Site obsolète, réseaux sans ligne directrice,
+              aucune cohérence de ton.</div>
+
+            <div class="rapport-brief-kicker">Réparation en cours</div>
+            <div class="rapport-brief">UI design, stratégie social media, motion graphique. Activation digitale en
+              progression.</div>
+
+            <div class="rapport-progress-wrap">
+              <div class="rapport-progress-head"><span>Avancement</span><span>75%</span></div>
+              <div class="rapport-progress-bar">
+                <div class="rapport-progress-fill" style="width:75%"></div>
+              </div>
+            </div>
+            <div class="rapport-hover-overlay"><span>Voir le rapport</span></div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ============================================================
+         06. SPÉCIFICATIONS DE MARQUE (BRANDBOOK CTA)
+         ============================================================ -->
+      <section class="section brandbook-section" id="brandbook" data-screen-label="06 Marque">
+        <div class="section-head">
+          <span class="section-num">06 /</span>
+          <span class="section-rule"></span>
+          <span class="section-kicker">Spécifications de marque</span>
+        </div>
+
+        <div class="brandbook-inner reveal">
+
+          <!-- GAUCHE — présentation éditoriale -->
+          <div class="brandbook-left">
+            <div>
+              <div class="bb-stamp">
+                <div class="bb-stamp-dot"></div>
+                <div class="bb-stamp-txt">Dossier confidentiel · v2.0</div>
+              </div>
+              <div class="brandbook-headline">Brand<br>Book<br><em>Studio<span
+                    style="color:var(--chalk);display:inline">.</span></em></div>
+              <div class="brandbook-sub">L'intégralité des règles graphiques du studio — palette, typographies,
+                espacements et règles d'usage. Un document de référence vivant, mis à jour en continu.</div>
+            </div>
+            <div class="bb-tokens">
+              <div class="bb-token">
+                <div class="bb-token-swatch" style="background:#0B0B0B;border:1px solid rgba(242,242,242,0.3)"></div>
+                Ebon
+              </div>
+              <div class="bb-token">
+                <div class="bb-token-swatch" style="background:#F2F2F2"></div>Chalk
+              </div>
+              <div class="bb-token">
+                <div class="bb-token-swatch" style="background:#FD3A20;border-color:transparent"></div>Vibrant
+              </div>
+              <div class="bb-token">
+                <div class="bb-token-swatch" style="background:#21FC91;border-color:transparent"></div>Mint
+              </div>
+              <div class="bb-token">
+                <div class="bb-token-swatch" style="background:#FC21A5;border-color:transparent"></div>Magenta
+              </div>
+              <div class="bb-token">
+                <div class="bb-token-swatch" style="background:#2179FC;border-color:transparent"></div>Azure
+              </div>
+            </div>
+          </div>
+
+          <!-- DROITE — couverture dossier + CTA -->
+          <div class="brandbook-right">
+            <div class="bb-dossier-label">Accès document · 06 / Spécifications de marque</div>
+
+            <div class="bb-cover">
+              <div class="bb-cover-wip">
+                <img src="assets/v2/wip/label-version-20-orange.svg" alt="">
+              </div>
+              <div>
+                <div class="bb-cover-ref">Réf. SD-BRANDBOOK-2026</div>
+                <div class="bb-cover-title">Studio<br>Djezo.</div>
+                <div class="bb-cover-subtitle">Spécifications de marque · DA v2.0</div>
+              </div>
+              <div>
+                <div class="bb-cover-swatches">
+                  <div class="bb-swatch-wrap">
+                    <div class="bb-swatch" style="background:#0B0B0B;border:1px solid rgba(242,242,242,0.15)"></div>
+                    <div class="bb-swatch-name">Ebon</div>
+                  </div>
+                  <div class="bb-swatch-wrap">
+                    <div class="bb-swatch" style="background:#F2F2F2"></div>
+                    <div class="bb-swatch-name">Chalk</div>
+                  </div>
+                  <div class="bb-swatch-wrap">
+                    <div class="bb-swatch" style="background:#FD3A20"></div>
+                    <div class="bb-swatch-name">Vibrant</div>
+                  </div>
+                  <div class="bb-swatch-wrap">
+                    <div class="bb-swatch" style="background:#21FC91"></div>
+                    <div class="bb-swatch-name">Mint</div>
+                  </div>
+                  <div class="bb-swatch-wrap">
+                    <div class="bb-swatch" style="background:#FC21A5"></div>
+                    <div class="bb-swatch-name">Magenta</div>
+                  </div>
+                </div>
+                <div class="bb-cover-meta">
+                  Barlow Condensed · Barlow · Space Grotesk<br>
+                  Mai 2026 · Toulon, PACA
+                </div>
+              </div>
+            </div>
+
+            <a href="../../../../Studio Djezo/index.html" target="_blank" rel="noopener noreferrer" class="btn-primary"
+              style="display:block;text-align:center">
+              Ouvrir les spécifications →
+            </a>
+            <div class="bb-cta-hint">Charte complète · Tokens · Typographies · Règles d'usage</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============================================================
+         07. CALCULETTE GRAPHISME
+         ============================================================ -->
+      <section class="calculette-section" id="calculette" data-screen-label="07 Calculette">
+        <div class="calc-header">
+          <div class="calc-title-block">
+            <div class="calc-title">La <span class="accent">Calculette</span><br>Graphisme.</div>
+            <div class="calc-sub">Outil · Estimation tarifaire · Mode : Manuel</div>
+            <div class="calc-progress-bar"></div>
+          </div>
+          <div class="calc-wip">
+            <img src="assets/v2/wip/label-signal-85-orange.svg" alt="">
+          </div>
+        </div>
+
+        <div class="calc-body">
+          <div class="calc-controls">
+
+            <!-- Prestation -->
+            <div class="calc-control-group">
+              <div class="calc-label">
+                <span>Prestation</span>
+              </div>
+              <div class="calc-options" id="prestOptions">
+                <div class="calc-option active" data-val="branding">Branding complet</div>
+                <div class="calc-option" data-val="logo">Logo seul</div>
+                <div class="calc-option" data-val="print">Print</div>
+                <div class="calc-option" data-val="digital">Digital</div>
+                <div class="calc-option" data-val="da">Direction artistique</div>
+              </div>
+            </div>
+
+            <!-- Complexité -->
+            <div class="calc-control-group">
+              <div class="calc-label">
+                <span>Complexité du projet</span>
+                <span class="calc-label-val" id="complexiteVal">Moyenne</span>
+              </div>
+              <div class="calc-slider-track">
+                <div class="calc-slider-fill" id="complexiteFill" style="width:50%"></div>
+                <input class="calc-slider" type="range" min="1" max="3" step="1" value="2" id="complexiteRange">
+              </div>
+              <div
+                style="display:flex;justify-content:space-between;margin-top:4px;font-family:var(--font-ui);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">
+                <span>Simple</span><span>Moyenne</span><span>Complexe</span>
+              </div>
+            </div>
+
+            <!-- Délai -->
+            <div class="calc-control-group">
+              <div class="calc-label">
+                <span>Délai de livraison</span>
+                <span class="calc-label-val" id="delaiVal">Standard (3–4 sem.)</span>
+              </div>
+              <div class="calc-slider-track">
+                <div class="calc-slider-fill" id="delaiFill" style="width:50%"></div>
+                <input class="calc-slider" type="range" min="1" max="3" step="1" value="2" id="delaiRange">
+              </div>
+              <div
+                style="display:flex;justify-content:space-between;margin-top:4px;font-family:var(--font-ui);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">
+                <span>Urgent</span><span>Standard</span><span>Serein</span>
+              </div>
+            </div>
+
+            <!-- Options -->
+            <div class="calc-control-group">
+              <div class="calc-label"><span>Options</span></div>
+              <div class="calc-options" id="optionsList">
+                <div class="calc-option" data-val="charte">Charte complète</div>
+                <div class="calc-option" data-val="mockup">Mockups</div>
+                <div class="calc-option" data-val="motion">Motion</div>
+                <div class="calc-option" data-val="print-col">Déclinaisons print</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RÉSULTAT -->
+          <div class="calc-result">
+            <div>
+              <div class="calc-result-label">Estimation · Fourchette indicative</div>
+              <div class="calc-result-price">
+                <span class="cur">€</span><span id="priceDisplay">2 800</span>
+              </div>
+              <div class="calc-result-range" id="priceRange">Fourchette : 2 500 – 3 200 €</div>
+            </div>
+
+            <div>
+              <div class="calc-result-breakdown">
+                <div class="calc-breakdown-row">
+                  <span>Prestation de base</span>
+                  <span class="calc-breakdown-val" id="bdBase">2 000 €</span>
+                </div>
+                <div class="calc-breakdown-row">
+                  <span>Complexité</span>
+                  <span class="calc-breakdown-val" id="bdComplexite">+ 400 €</span>
+                </div>
+                <div class="calc-breakdown-row">
+                  <span>Délai</span>
+                  <span class="calc-breakdown-val" id="bdDelai">Standard</span>
+                </div>
+                <div class="calc-breakdown-row">
+                  <span>Options</span>
+                  <span class="calc-breakdown-val" id="bdOptions">— €</span>
+                </div>
+              </div>
+              <div class="calc-breakdown-total">
+                <span>Total estimé</span>
+                <span class="calc-breakdown-val" id="bdTotal">2 800 €</span>
+              </div>
+
+              <div class="calc-cta">
+                <a href="#contact" class="btn-primary">Discuter du projet →</a>
+              </div>
+              <div class="calc-disclaimer">
+                Estimation non contractuelle. Devis détaillé sur demande — réponse sous 48h (jours ouvrés).
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         07. CONTACT
+         ============================================================ -->
+      <section class="section" id="contact" data-screen-label="08 Contact">
+        <div class="section-head">
+          <span class="section-num">08 /</span>
+          <span class="section-rule"></span>
+          <span class="section-kicker">Écrire au studio</span>
+        </div>
+
+        <div class="contact-layout reveal">
+          <!-- Infos -->
+          <div class="contact-info">
+            <div>
+              <div class="contact-location-label">06 / Localisation</div>
+              <div class="contact-city">Toulon<br><span class="accent">PACA</span><span
+                  style="color:var(--chalk)">.</span></div>
+            </div>
+            <div>
+              <div class="contact-details">
+                <div class="contact-detail-row">
+                  <span class="contact-detail-label">Email</span>
+                  <span class="contact-detail-val"><a
+                      href="mailto:contact@studiodjezo.com">contact@studiodjezo.com</a></span>
+                </div>
+                <div class="contact-detail-row">
+                  <span class="contact-detail-label">Ville</span>
+                  <span class="contact-detail-val">Toulon, PACA<br>Déplacements FR &amp; EU</span>
+                </div>
+                <div class="contact-detail-row">
+                  <span class="contact-detail-label">Réponse</span>
+                  <span class="contact-detail-val">Sous 48h (jours ouvrés).</span>
+                </div>
+                <div class="contact-detail-row">
+                  <span class="contact-detail-label">Disponibilité</span>
+                  <span class="contact-detail-val" style="color:var(--mint)">Ouverte aux projets</span>
+                </div>
+              </div>
+              <div class="contact-map-placeholder">
+                <div class="contact-map-cross">
+                  <img src="assets/v2/wip/marker-cross-white.svg" alt="">
+                </div>
+                <div class="contact-map-inner">
+                  <div
+                    style="font-family:var(--font-display);font-weight:700;font-size:18px;text-transform:uppercase;color:var(--chalk);margin-bottom:4px">
+                    Toulon</div>
+                  <div>43.1242° N, 5.9280° E</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulaire -->
+          <div class="contact-form">
+            <div class="contact-form-label">Écrire au studio — Réponse sous 48h (jours ouvrés).</div>
+
+            <div id="form-area">
+              <form id="contact-form" class="form-grid" onsubmit="submitForm(event)" novalidate>
+                <div class="form-row">
+                  <div class="field">
+                    <label for="f-nom">Nom</label>
+                    <input id="f-nom" name="nom" type="text" placeholder="Votre nom" required>
+                  </div>
+                  <div class="field">
+                    <label for="f-email">Email</label>
+                    <input id="f-email" name="email" type="email" placeholder="vous@exemple.com" required>
+                  </div>
+                </div>
+                <div class="field field-wide">
+                  <label for="f-type">Type de projet</label>
+                  <select id="f-type" name="type_projet">
+                    <option value="">Sélectionner…</option>
+                    <option>Identité visuelle / Branding</option>
+                    <option>Print &amp; Édition</option>
+                    <option>Digital / Site web</option>
+                    <option>Direction artistique</option>
+                    <option>Autre</option>
+                  </select>
+                </div>
+                <div class="field field-wide">
+                  <label for="f-msg">Projet &amp; contexte</label>
+                  <textarea id="f-msg" name="message" rows="5"
+                    placeholder="Décrivez votre projet, vos objectifs, le calendrier envisagé…" required></textarea>
+                </div>
+                <div class="form-foot">
+                  <button id="form-btn" type="submit" class="btn-primary">Envoyer →</button>
+                  <span class="form-hint">Ou : contact@studiodjezo.com</span>
+                </div>
+              </form>
+              <div id="form-error">Erreur d'envoi — Réessayez ou écrivez à contact@studiodjezo.com</div>
+            </div>
+
+            <div id="form-sent">
+              <div class="sent-block">
+                <div class="sent-check">✓</div>
+                <div class="sent-text">Message<br>envoyé.</div>
+              </div>
+              <div
+                style="margin-top:8px;font-family:var(--font-ui);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">
+                À très vite — Studio Djezo.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+      <footer class="footer" data-screen-label="Footer">
+        <div class="footer-top">
+          <div class="footer-big"><span>Studio</span><span>Djezo<span
+                style="color:var(--chalk);display:inline">.</span></span></div>
+          <div class="footer-col">
+            <div class="footer-col-label">Contact</div>
+            <a href="mailto:contact@studiodjezo.com">contact@studiodjezo.com</a>
+            <a href="https://studiodjezo.com" target="_blank">studiodjezo.com ↗</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-label">Région</div>
+            <p>Toulon, PACA</p>
+            <p>Déplacements FR &amp; EU</p>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-label">Ailleurs</div>
+            <a target="_blank" href="https://www.instagram.com/studiodjezo/">Instagram ↗</a>
+            <a target="_blank" href="https://www.linkedin.com/company/studio-djezo/">LinkedIn ↗</a>
+          </div>
+        </div>
+        <div class="footer-btm">
+          <span>© 2026 Studio Djezo</span>
+          <span class="tagline">Communication <span class="o">rétablie</span>.</span>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    /* ============================================================
+       BOOT SEQUENCE — rejoue à chaque fois que le hero devient visible
+       ============================================================ */
+    let bootTimeouts = [];
+
+    function playBootSequence() {
+      // Annule tout timer en cours
+      bootTimeouts.forEach(clearTimeout);
+      bootTimeouts = [];
+
+      const lines = document.querySelectorAll('.hero-boot-line');
+
+      // Reset immédiat
+      lines.forEach(line => {
+        line.style.transition = 'none';
+        line.style.opacity = '0';
+        line.classList.remove('loaded');
+      });
+
+      // Relance après un micro-délai pour que le reset soit peint
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          lines.forEach(line => {
+            const delay = parseInt(line.dataset.delay) || 900;
+            const t1 = setTimeout(() => {
+              line.style.transition = 'opacity 0.3s ease';
+              line.style.opacity = '1';
+              const t2 = setTimeout(() => line.classList.add('loaded'), 80);
+              bootTimeouts.push(t2);
+            }, delay);
+            bootTimeouts.push(t1);
+          });
+        });
+      });
+    }
+
+    // Observer sur le hero : joue à l'entrée, reset à la sortie
+    const heroEl = document.getElementById('hero');
+    let heroHasPlayed = false;
+
+    const bootObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Rejoue uniquement si on revient dessus (pas le tout premier chargement géré ci-dessous)
+          if (heroHasPlayed) playBootSequence();
+          heroHasPlayed = true;
+        }
+      });
+    }, { threshold: 0.4 });
+
+    if (heroEl) bootObserver.observe(heroEl);
+
+    // Premier lancement au chargement
+    playBootSequence();
+
+    /* ============================================================
+       SCROLL SPY + REVEAL
+       ============================================================ */
+    const navLinks = document.querySelectorAll('.sb-nav a');
+    const sections = ['hero', 'philosophie', 'expertises', 'interventions', 'brandbook', 'calculette', 'contact'];
+
+    function setActive(id) {
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+
+    const spyObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) setActive(e.target.id);
+      });
+    }, { threshold: 0.25 });
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) spyObserver.observe(el);
+    });
+
+    navLinks.forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY - 0;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+        setActive(id);
+      });
+    });
+
+    /* ============================================================
+       REVEAL ON SCROLL
+       ============================================================ */
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // Trigger visible for elements already in view
+    setTimeout(() => {
+      revealEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) el.classList.add('visible');
+      });
+    }, 100);
+
+    /* ============================================================
+       MOBILE MENU
+       ============================================================ */
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    burgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
+    }
+
+    /* ============================================================
+       CALCULETTE
+       ============================================================ */
+    const PRESTATION_BASE = {
+      branding: { base: 2000, label: 'Branding complet', min: 2500, max: 4500 },
+      logo: { base: 800, label: 'Logo seul', min: 700, max: 1600 },
+      print: { base: 600, label: 'Print', min: 500, max: 1800 },
+      digital: { base: 1500, label: 'Digital', min: 1200, max: 3500 },
+      da: { base: 1200, label: 'Direction artistique', min: 1000, max: 2800 },
+    };
+
+    const COMPLEXITE = {
+      1: { mult: 0.8, label: 'Simple', add: 0 },
+      2: { mult: 1.0, label: 'Moyenne', add: 400 },
+      3: { mult: 1.35, label: 'Complexe', add: 900 },
+    };
+
+    const DELAI = {
+      1: { mult: 1.25, label: 'Urgent (+25%)', add: 0 },
+      2: { mult: 1.0, label: 'Standard (3–4 sem.)', add: 0 },
+      3: { mult: 0.95, label: 'Serein (–5%)', add: 0 },
+    };
+
+    const OPTIONS_PRICE = {
+      charte: 400,
+      mockup: 250,
+      motion: 600,
+      'print-col': 350,
+    };
+
+    let currentPrestation = 'branding';
+    let currentComplexite = 2;
+    let currentDelai = 2;
+    let activeOptions = new Set();
+
+    function formatPrice(n) {
+      return Math.round(n).toLocaleString('fr-FR').replace(/\s/g, '\u202f');
+    }
+
+    function updateCalc() {
+      const prest = PRESTATION_BASE[currentPrestation];
+      const comp = COMPLEXITE[currentComplexite];
+      const delai = DELAI[currentDelai];
+
+      let base = prest.base;
+      let complexiteAdd = comp.add;
+      let optionsTotal = 0;
+      activeOptions.forEach(k => { optionsTotal += (OPTIONS_PRICE[k] || 0); });
+
+      let total = (base + complexiteAdd + optionsTotal) * delai.mult;
+      let minP = prest.min * comp.mult * delai.mult + optionsTotal;
+      let maxP = prest.max * comp.mult * delai.mult + optionsTotal;
+
+      document.getElementById('priceDisplay').textContent = formatPrice(total);
+      document.getElementById('priceRange').textContent = `Fourchette : ${formatPrice(minP)} – ${formatPrice(maxP)} €`;
+      document.getElementById('bdBase').textContent = formatPrice(base) + ' €';
+      document.getElementById('bdComplexite').textContent = complexiteAdd ? '+ ' + formatPrice(complexiteAdd) + ' €' : '—';
+      document.getElementById('bdDelai').textContent = delai.label;
+      document.getElementById('bdOptions').textContent = optionsTotal ? '+ ' + formatPrice(optionsTotal) + ' €' : '—';
+      document.getElementById('bdTotal').textContent = formatPrice(total) + ' €';
+    }
+
+    // Prestation options
+    document.querySelectorAll('#prestOptions .calc-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('#prestOptions .calc-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        currentPrestation = opt.dataset.val;
+        updateCalc();
+      });
+    });
+
+    // Complexité slider
+    const compRange = document.getElementById('complexiteRange');
+    const compFill = document.getElementById('complexiteFill');
+    const compVal = document.getElementById('complexiteVal');
+    compRange.addEventListener('input', () => {
+      currentComplexite = parseInt(compRange.value);
+      const pct = ((currentComplexite - 1) / 2) * 100;
+      compFill.style.width = pct + '%';
+      compVal.textContent = COMPLEXITE[currentComplexite].label;
+      updateCalc();
+    });
+
+    // Délai slider
+    const delaiRange = document.getElementById('delaiRange');
+    const delaiFill = document.getElementById('delaiFill');
+    const delaiVal = document.getElementById('delaiVal');
+    delaiRange.addEventListener('input', () => {
+      currentDelai = parseInt(delaiRange.value);
+      const pct = ((currentDelai - 1) / 2) * 100;
+      delaiFill.style.width = pct + '%';
+      delaiVal.textContent = DELAI[currentDelai].label;
+      updateCalc();
+    });
+
+    // Options (multi-select)
+    document.querySelectorAll('#optionsList .calc-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const k = opt.dataset.val;
+        if (activeOptions.has(k)) {
+          activeOptions.delete(k);
+          opt.classList.remove('active');
+        } else {
+          activeOptions.add(k);
+          opt.classList.add('active');
+        }
+        updateCalc();
+      });
+    });
+
+    updateCalc();
+
+    /* ============================================================
+       CONTACT FORM
+       ============================================================ */
+    async function submitForm(e) {
+      e.preventDefault();
+
+      const form = document.getElementById('contact-form');
+      const btn = document.getElementById('form-btn');
+      const errDiv = document.getElementById('form-error');
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours…';
+      errDiv.style.display = 'none';
+
+      const data = {
+        nom: document.getElementById('f-nom').value,
+        email: document.getElementById('f-email').value,
+        type_projet: document.getElementById('f-type').value,
+        message: document.getElementById('f-msg').value,
+      };
+
+      try {
+        const res = await fetch('https://formspree.io/f/xpqbrbbo', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+          document.getElementById('form-area').style.display = 'none';
+          document.getElementById('form-sent').style.display = 'block';
+        } else {
+          throw new Error('server');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Envoyer →';
+        errDiv.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+
+</html>
